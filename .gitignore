@@ -1,0 +1,20 @@
+# mdBook
+book/
+target/
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Build artifacts (General)
+build/
+dist/
+*.o
+*.elf
+*.bin
+*.hex

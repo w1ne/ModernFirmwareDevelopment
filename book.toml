@@ -1,0 +1,13 @@
+[book]
+authors = ["Andrii"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Modern Firmware Development"
+
+[output.html]
+additional-css = ["custom.css"]
+git-repository-url = "https://github.com/w1ne/ModernFirmwareDevelopment"
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
