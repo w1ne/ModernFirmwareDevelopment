@@ -96,7 +96,7 @@ sha256sum -c firmware.bin.sha256
 # Result: firmware.bin: OK
 ```
 
-This prevents accidental deployment of "stale" builds or corrupted artifacts. A mismatch must stop the deployment pipeline immediately.
+This prevents accidental deployment of "stale" builds or corrupted artifacts. A mismatch must stop the [Hardware-in-the-Loop](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/hil.md) verification or the [Continuous Delivery](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/cd-ota.md) pipeline immediately.
 
 ---
 *   [Ford: Cloud-based ADAS HIL Testing Architecture](https://www.sae.org)

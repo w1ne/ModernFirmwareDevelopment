@@ -124,7 +124,7 @@ Feature: Motor Safety Interlock
 ### The Power of Executable Specs
 1.  **Automation:** This file is read by a test runner (e.g., Cucumber or C-based equivalents). It generates the test harness automatically.
 2.  **Shared Language:** Mechanical engineers, software engineers, and safety auditors can all read and approve this file.
-3.  **Traceability:** The ID of this requirement is linked to the test result in every CI run.
+3.  **Traceability:** The ID of this requirement is linked to the test result in every [Continuous Integration](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/ci.md) run.
 
 ---
 

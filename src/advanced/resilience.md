@@ -61,7 +61,7 @@ STM32's WWDG supports windowed mode. Enable it when resources allow.
 
 ## Tracking Resets: The Boot Counter
 
-A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason.
+A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason using your [Observability](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/observability.md) framework.
 
 The MCU reset reason register (e.g., `RCC->CSR` on STM32, `RESETREAS` on nRF52) tells you whether the last reset was from:
 - Power-on

@@ -77,7 +77,7 @@ In 2002, **Amazon** transformed from a struggling retailer into a tech titan via
 Site Reliability Engineering (SRE) is a discipline that incorporates aspects of software engineering and applies them to infrastructure and operations problems. In firmware, the "Operation" is the execution of code on millions of devices in the field.
 
 *   **From Detection to Prevention:** Traditional firmware "Fixes" bugs after they occur. A Firmware SRE builds "Invariants" into the design to ensure bugs cannot happen.
-*   **Error Budgets:** No system is 100% reliable. An Error Budget defines the acceptable level of failure (e.g., 99.9% uptime). If the budget is exhausted, all new feature development stops, and the team focus shifts entirely to stability.
+*   **Error Budgets:** No system is 100% reliable. An Error Budget defines the acceptable level of failure (e.g., 99.9% uptime). If the budget is exhausted, all new feature development stops, and the team focus shifts entirely to stability. You can measure and track these thresholds using [DORA Metrics](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/culture/dora-metrics.md).
 *   **Eliminating Toil:** Toil is manual, repetitive work with no long-term value (e.g., manual flashing, repetitive log analysis). If you do a task twice, automate it. If you do it three times, build a tool for it.
 
 ---

@@ -44,7 +44,7 @@ The "Elite" metric is the **Mutation Score**.
 Distal Motion, the manufacturer of the *Dexter* surgical robot, operates in a world where software failure isn't an option (Safety Class C, IEC 62304).
 
 *   **The Problem:** Manually verifying safety requirements on physical robot prototypes was slow and expensive.
-*   **The Solution:** They implemented a rigorous off-target unit testing pipeline. They treated software verification as a continuous process powered by simulation.
+*   **The Solution:** They implemented a rigorous off-target unit testing pipeline. They treated software verification as a continuous process powered by [Simulation](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/inner-loop/simulation.md).
 *   **The Result:** A **43% increase in code coverage** and a significant reduction in post-integration defects. More importantly, they achieved medical certification faster by providing automated proof of correctness.
 *   **The ROI:** While unit testing adds roughly 30% to initial development time, it reduces the cost of "late-stage debugging"—which is typically **10x to 100x more expensive** in embedded systems.
 
