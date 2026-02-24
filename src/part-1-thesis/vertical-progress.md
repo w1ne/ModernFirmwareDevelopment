@@ -29,11 +29,12 @@ SpaceX brought almost everything in-house. The engineering team prioritized soft
 SpaceX wrote their own flight control systems and used commodity hardware. This vertical leap achieved a 10x cost reduction. Ownership of the software stack grants you ownership of the economics. SpaceX does not wait for vendor abstraction layers. The engineering team writes their own.
 
 ### The Cost of Horizontal Complexity (Negative Example)
-In the late 2000s, **Nokia** lost its market dominance to the iPhone. The primary reason was not hardware prowess, but the "Horizontal" complexity of their software stack.
 
-*   **The Problem:** Nokia’s Symbian OS was fragmented into over 10 different variants. Every new phone model required a custom fork of the operating system. This created a massive, unmanageable code surface.
-*   **The Data:** Nokia engineers spent **20 months** developing a single new handset. During the same period, Apple released an entirely new generation of iOS.
-*   **The Lesson:** Managing a forest of hardware-specific forks is a dead end. Vertical progress requires a unified, abstracted platform that allows you to ship software once and run it on any device.
+In the late 2000s, **Nokia** lost its market dominance to the iPhone. The primary reason was not hardware prowess. The reason was the horizontal complexity of the Nokia software stack.
+
+Nokia fragmented the Symbian OS into over ten different variants. Every new phone model required a custom fork of the operating system. This fragmentation created a massive and unmanageable code surface. Nokia engineers spent **20 months** developing a single new handset. During the exact same period, Apple released an entirely new generation of iOS.
+
+Managing a forest of hardware-specific forks creates a dead end. Vertical progress requires a unified platform. An abstracted platform allows you to ship software once and run the software on any device.
 
 ---
 
