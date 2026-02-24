@@ -27,22 +27,23 @@ An embedded system is a computerized system purpose-built for its application. I
 As hardware scales, the firmware must accommodate change. A prototype is not a product. 
 
 ## Case Study: The $1.5 Billion Spaghetti (Toyota Failure)
-In 2013, the *Bookout v. Toyota* case revealed the terminal cost of a "Hardware-First" mindset. Toyota’s engine control firmware was found to be "spaghetti code"—untestable, undocumented, and dangerous.
+In 2013, the *Bookout v. Toyota* case revealed the final cost of a Hardware-First mindset. Experts analyzed Toyota’s engine control firmware and discovered untestable and undocumented code.
 
-*   **The Flaw:** Over 10,000 global variables and a silent task death could disable throttle control without triggering a watchdog. The system had no clear abstraction, making regression testing impossible.
-*   **The Result:** Unintended acceleration, fatalities, and a **$1.5 Billion settlement**.
-*   **The Lesson:** You cannot "QA" safety into a system built on a broken culture. Safety must be an architectural first principle, not a final inspection step.
+The system contained over 10000 global variables. A silent task death disabled vehicle throttle control without triggering a watchdog timer. The architecture lacked clear abstraction boundaries. This design failure made regression testing impossible. 
+
+The resulting unintended acceleration caused fatalities. Toyota paid a $1.5 Billion settlement. You cannot inspect safety into a system built on a broken engineering culture. You must treat safety as an architectural first principle.
 
 ## Case Study: The Living Platform (Tesla Success)
-Contrast this with Tesla. During a safety recall in 2023 affecting nearly 2 million vehicles, Tesla didn't ask customers to visit a dealer. They pushed a firmware update.
+Contrast the Toyota failure with Tesla. In 2023, a safety recall affected nearly two million Tesla vehicles. The company did not ask customers to visit a dealership. The engineering team deployed an automated firmware update overnight.
 
-*   **The Edge:** Tesla treats their cars as a single, integrated computer. They control the vertical stack from the kernel to the fleet management.
-*   **The Result:** They reduce the cost of recalls to almost zero while continuously adding value.
-*   **The Lesson:** When firmware moves at the speed of cloud software, the business wins.
+Tesla treats their vehicles as a single integrated computer. The team controls the vertical stack from the operating system kernel to the fleet management cloud. This architectural control reduces the cost of safety recalls to zero. The company adds continuous product value to existing vehicles. Your business wins when your firmware deployment moves at the speed of cloud software.
 
 ## The Implementation: How to Start the Shift
 To stop building "Spaghetti" and start building "Platforms," you must adopt modern architectural disciplines:
 
+1.  **Continuous Integration:** Automate everything. Your tests must run on every commit.
+2.  **Hardware Abstraction Layers:** Decouple your business logic from the silicon.
+3.  **Modern Toolchains:** Ditch the vendor IDEs. Use Makefile, CMake, or modern build systems. 
 4.  **Simulation First:** Stop waiting for boards. Test your decoupled logic on the host or in a digital twin. 
 
 ---
