@@ -276,7 +276,7 @@
 <p>Site Reliability Engineering (SRE) is a discipline that incorporates aspects of software engineering and applies them to infrastructure and operations problems. In firmware, the "Operation" is the execution of code on millions of devices in the field.</p>
 <ul>
 <li><strong>From Detection to Prevention:</strong> Traditional firmware "Fixes" bugs after they occur. A Firmware SRE builds "Invariants" into the design to ensure bugs cannot happen.</li>
-<li><strong>Error Budgets:</strong> No system is 100% reliable. An Error Budget defines the acceptable level of failure (e.g., 99.9% uptime). If the budget is exhausted, all new feature development stops, and the team focus shifts entirely to stability.</li>
+<li><strong>Error Budgets:</strong> No system is 100% reliable. An Error Budget defines the acceptable level of failure (e.g., 99.9% uptime). If the budget is exhausted, all new feature development stops, and the team focus shifts entirely to stability. You can measure and track these thresholds using <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/culture/dora-metrics.md">DORA Metrics</a>.</li>
 <li><strong>Eliminating Toil:</strong> Toil is manual, repetitive work with no long-term value (e.g., manual flashing, repetitive log analysis). If you do a task twice, automate it. If you do it three times, build a tool for it.</li>
 </ul>
 <hr />
@@ -389,7 +389,7 @@
 <li><strong>The Traditional Trap:</strong> Many teams spend 80% of their time on manual hardware testing and 20% on automated logic. This is the <strong>Testing Iceberg</strong>. Most of the effort is underwater (manual), slow, and non-reproducible.</li>
 <li><strong>The Inverted Pyramid:</strong> Modern firmware flips the script:
 <ol>
-<li><strong>Bottom Layer (Base):</strong> 70% Unit Tests (Host-based). Fast, exhaustive, and runs in seconds.</li>
+<li><strong>Bottom Layer (Base):</strong> 70% <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/inner-loop/unit-testing.md">Unit Tests</a> (Host-based). Fast, exhaustive, and runs in seconds.</li>
 <li><strong>Middle Layer:</strong> 20% Integration/Simulation Tests (Renode/QEMU). Verifies the interaction between modules and virtual peripherals.</li>
 <li><strong>Top Layer (Peak):</strong> 10% System/HIL Tests (Real Hardware). Verifies final physical behavior and electrical compliance.</li>
 </ol>
@@ -627,7 +627,7 @@ variable_16bit := integer(variable_64bit_float);
 <ol>
 <li><strong>Automation:</strong> This file is read by a test runner (e.g., Cucumber or C-based equivalents). It generates the test harness automatically.</li>
 <li><strong>Shared Language:</strong> Mechanical engineers, software engineers, and safety auditors can all read and approve this file.</li>
-<li><strong>Traceability:</strong> The ID of this requirement is linked to the test result in every CI run.</li>
+<li><strong>Traceability:</strong> The ID of this requirement is linked to the test result in every <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/ci.md">Continuous Integration</a> run.</li>
 </ol>
 <hr />
 <blockquote>
@@ -1109,7 +1109,7 @@ memcpy(response_buffer, request_payload, payload_length);
 <h2 id="mental-model-the-blast-radius-mpu-isolation"><a class="header" href="#mental-model-the-blast-radius-mpu-isolation">Mental Model: The Blast Radius (MPU Isolation)</a></h2>
 <p>A vulnerability or bug in one software module should not lead to a total system failure.</p>
 <ul>
-<li><strong>The Inhabitable Compartment:</strong> Think of your firmware like a ship. A leak in the hull is only catastrophic if it can flood the entire vessel. By using the Memory Protection Unit (MPU), you divide your firmware into "Inhabitable Compartments."</li>
+<li><strong>The Inhabitable Compartment:</strong> Think of your firmware like a ship. A leak in the hull is only catastrophic if it can flood the entire vessel. By using the Memory Protection Unit (MPU), you divide your firmware into "Inhabitable Compartments." You can define these boundaries during the <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/foundation/abstraction-shift.md">Abstraction Shift</a> design phase.</li>
 <li><strong>Defining the Radius:</strong> The Blast Radius is the maximum extent of damage a single module can do. If the Bluetooth stack has its own MPU-protected region, a buffer overflow in that stack cannot touch the motor control logic.</li>
 <li><strong>Hardware Enforcement:</strong> Unlike "Software Rules," the MPU is a hardware-enforced boundary. If a module tries to write outside its blast radius, the CPU triggers a fault instantly. This contains the "explosion" of a bug and allows the rest of the system to enter a safe state.</li>
 </ul>
@@ -1432,7 +1432,7 @@ west list --format "{name} {revision} {path}" &gt;&gt; sbom.txt
 <p>Distal Motion, the manufacturer of the <em>Dexter</em> surgical robot, operates in a world where software failure isn't an option (Safety Class C, IEC 62304).</p>
 <ul>
 <li><strong>The Problem:</strong> Manually verifying safety requirements on physical robot prototypes was slow and expensive.</li>
-<li><strong>The Solution:</strong> They implemented a rigorous off-target unit testing pipeline. They treated software verification as a continuous process powered by simulation.</li>
+<li><strong>The Solution:</strong> They implemented a rigorous off-target unit testing pipeline. They treated software verification as a continuous process powered by <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/inner-loop/simulation.md">Simulation</a>.</li>
 <li><strong>The Result:</strong> A <strong>43% increase in code coverage</strong> and a significant reduction in post-integration defects. More importantly, they achieved medical certification faster by providing automated proof of correctness.</li>
 <li><strong>The ROI:</strong> While unit testing adds roughly 30% to initial development time, it reduces the cost of "late-stage debugging"—which is typically <strong>10x to 100x more expensive</strong> in embedded systems.</li>
 </ul>
@@ -1770,7 +1770,7 @@ async fn main(spawner: Spawner) {
 <li><strong>Visual Topology:</strong> Don't write Python scripts to define your board. "Wire" your SoC, sensors, and actuators in a visual CAD-like interface.</li>
 <li><strong>Collaborative Debugging:</strong> If you find a bug, don't send a screenshot. Send a <strong>URL</strong> to a "Frozen State" of the simulation. Your colleague can open it and step through the exact same failure.</li>
 <li><strong>Hardware-Software Co-verification:</strong> Automatically ingest a PDF datasheet to generate a functional peripheral model in minutes.</li>
-<li><strong>Digital Twins for AI:</strong> In the 2027 context, simulation is the engine for <strong>Edge AI Lifecycle Management</strong>. Instead of collecting manual data from the field, you use a Digital Twin to generate millions of synthetic sensor scenarios to train and verify your TinyML models before they ever touch silicon.</li>
+<li><strong>Digital Twins for AI:</strong> In the 2027 context, simulation is the engine for <strong>Edge AI Lifecycle Management</strong>. Instead of collecting manual data from the field, you use a <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/advanced/semantic-engineering.md">Digital Twin</a> to generate millions of synthetic sensor scenarios to train and verify your TinyML models before they ever touch silicon.</li>
 </ol>
 <hr />
 <h2 id="mental-model-the-simulation-gap-sim-vs-sil"><a class="header" href="#mental-model-the-simulation-gap-sim-vs-sil">Mental Model: The Simulation Gap (SIM vs. SIL)</a></h2>
@@ -1978,7 +1978,7 @@ jobs:
 <pre><code class="language-bash">sha256sum -c firmware.bin.sha256
 # Result: firmware.bin: OK
 </code></pre>
-<p>This prevents accidental deployment of "stale" builds or corrupted artifacts. A mismatch must stop the deployment pipeline immediately.</p>
+<p>This prevents accidental deployment of "stale" builds or corrupted artifacts. A mismatch must stop the <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/hil.md">Hardware-in-the-Loop</a> verification or the <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/cd-ota.md">Continuous Delivery</a> pipeline immediately.</p>
 <hr />
 <ul>
 <li><a href="https://www.sae.org">Ford: Cloud-based ADAS HIL Testing Architecture</a></li>
@@ -2077,7 +2077,7 @@ jobs:
 <li><strong>No rollback:</strong> A power loss mid-update leaves the device with a half-written image. It is now a brick.</li>
 <li><strong>Big-bang rollout:</strong> A bad update goes to every device simultaneously. Your entire fleet is broken.</li>
 </ol>
-<p>Modern OTA engineering eliminates all three.</p>
+<p>Modern OTA engineering eliminates all three by using a robust <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/advanced/security.md">Security</a> architecture.</p>
 <h2 id="the-ab-partition-model"><a class="header" href="#the-ab-partition-model">The A/B Partition Model</a></h2>
 <p>The safest OTA architecture requires two firmware partitions: <strong>Slot A</strong> (active) and <strong>Slot B</strong> (pending).</p>
 <ol>
@@ -2384,7 +2384,7 @@ void supervisor_task(void *a, void *b, void *c) {
 <p>A standard watchdog fires if you kick it too late. A <strong>windowed watchdog</strong> fires if you kick it too early or too late. This catches a task that loops so fast it kicks the watchdog thousands of times per second while ignoring all other work.</p>
 <p>STM32's WWDG supports windowed mode. Enable it when resources allow.</p>
 <h2 id="tracking-resets-the-boot-counter"><a class="header" href="#tracking-resets-the-boot-counter">Tracking Resets: The Boot Counter</a></h2>
-<p>A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason.</p>
+<p>A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason using your <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/observability.md">Observability</a> framework.</p>
 <p>The MCU reset reason register (e.g., <code>RCC-&gt;CSR</code> on STM32, <code>RESETREAS</code> on nRF52) tells you whether the last reset was from:</p>
 <ul>
 <li>Power-on</li>

@@ -220,7 +220,7 @@ void supervisor_task(void *a, void *b, void *c) {
 <p>A standard watchdog fires if you kick it too late. A <strong>windowed watchdog</strong> fires if you kick it too early or too late. This catches a task that loops so fast it kicks the watchdog thousands of times per second while ignoring all other work.</p>
 <p>STM32's WWDG supports windowed mode. Enable it when resources allow.</p>
 <h2 id="tracking-resets-the-boot-counter"><a class="header" href="#tracking-resets-the-boot-counter">Tracking Resets: The Boot Counter</a></h2>
-<p>A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason.</p>
+<p>A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason using your <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/outer-loop/observability.md">Observability</a> framework.</p>
 <p>The MCU reset reason register (e.g., <code>RCC-&gt;CSR</code> on STM32, <code>RESETREAS</code> on nRF52) tells you whether the last reset was from:</p>
 <ul>
 <li>Power-on</li>

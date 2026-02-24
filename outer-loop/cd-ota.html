@@ -184,7 +184,7 @@
 <li><strong>No rollback:</strong> A power loss mid-update leaves the device with a half-written image. It is now a brick.</li>
 <li><strong>Big-bang rollout:</strong> A bad update goes to every device simultaneously. Your entire fleet is broken.</li>
 </ol>
-<p>Modern OTA engineering eliminates all three.</p>
+<p>Modern OTA engineering eliminates all three by using a robust <a href="file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/advanced/security.md">Security</a> architecture.</p>
 <h2 id="the-ab-partition-model"><a class="header" href="#the-ab-partition-model">The A/B Partition Model</a></h2>
 <p>The safest OTA architecture requires two firmware partitions: <strong>Slot A</strong> (active) and <strong>Slot B</strong> (pending).</p>
 <ol>
