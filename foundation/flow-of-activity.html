@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Flow of Activity - Modern Firmware Development</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../part-1-foundation.html"><strong aria-hidden="true">1.</strong> Part 1: The Thesis (Zero to One)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../culture/mindset.html"><strong aria-hidden="true">1.1.</strong> The Firmware Secret</a></li><li class="chapter-item expanded "><a href="../culture/dora-metrics.html"><strong aria-hidden="true">1.2.</strong> Measuring Performance (DORA)</a></li><li class="chapter-item expanded "><a href="../culture/vertical-progress.html"><strong aria-hidden="true">1.3.</strong> Vertical Progress (Strategy)</a></li></ol></li><li class="chapter-item expanded "><a href="../part-2-inner-loop.html"><strong aria-hidden="true">2.</strong> Part 2: The Foundation (Inner Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../foundation/hardware-handshake.html"><strong aria-hidden="true">2.1.</strong> The Hardware Handshake</a></li><li class="chapter-item expanded "><a href="../foundation/requirements.html"><strong aria-hidden="true">2.2.</strong> Requirements Engineering</a></li><li class="chapter-item expanded "><a href="../foundation/boot-sequence.html"><strong aria-hidden="true">2.3.</strong> The Boot Sequence</a></li><li class="chapter-item expanded "><a href="../foundation/abstraction-shift.html"><strong aria-hidden="true">2.4.</strong> The Abstraction Shift</a></li><li class="chapter-item expanded "><a href="../foundation/flow-of-activity.html" class="active"><strong aria-hidden="true">2.5.</strong> Flow of Activity</a></li><li class="chapter-item expanded "><a href="../foundation/peripherals.html"><strong aria-hidden="true">2.6.</strong> The Peripheral Paradox</a></li><li class="chapter-item expanded "><a href="../foundation/memory-safety.html"><strong aria-hidden="true">2.7.</strong> The Memory Safety Shift</a></li><li class="chapter-item expanded "><a href="../foundation/debugging-patterns.html"><strong aria-hidden="true">2.8.</strong> Debugging as Thinking Patterns</a></li><li class="chapter-item expanded "><a href="../foundation/reproducible-environments.html"><strong aria-hidden="true">2.9.</strong> Reproducible Environments (Docker)</a></li><li class="chapter-item expanded "><a href="../foundation/dependency-management.html"><strong aria-hidden="true">2.10.</strong> Dependency Management</a></li><li class="chapter-item expanded "><a href="../inner-loop/unit-testing.html"><strong aria-hidden="true">2.11.</strong> Unit Testing on Host</a></li><li class="chapter-item expanded "><a href="../inner-loop/static-analysis.html"><strong aria-hidden="true">2.12.</strong> Static Analysis</a></li></ol></li><li class="chapter-item expanded "><a href="../part-3-outer-loop.html"><strong aria-hidden="true">3.</strong> Part 3: The Transformation (Modern Tech)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced/rust.html"><strong aria-hidden="true">3.1.</strong> The Safety Shift (Rust)</a></li><li class="chapter-item expanded "><a href="../inner-loop/toolchains.html"><strong aria-hidden="true">3.2.</strong> The OS Shift (Zephyr)</a></li><li class="chapter-item expanded "><a href="../inner-loop/simulation.html"><strong aria-hidden="true">3.3.</strong> The Simulation Shift (Renode & LabWired)</a></li><li class="chapter-item expanded "><a href="../advanced/semantic-engineering.html"><strong aria-hidden="true">3.4.</strong> Semantic Engineering & Digital Twins</a></li><li class="chapter-item expanded "><a href="../advanced/networking.html"><strong aria-hidden="true">3.5.</strong> Connectivity & IoT Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../part-4-advanced.html"><strong aria-hidden="true">4.</strong> Part 4: The Delivery (Outer Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outer-loop/ci.html"><strong aria-hidden="true">4.1.</strong> Continuous Integration (CI)</a></li><li class="chapter-item expanded "><a href="../outer-loop/hil.html"><strong aria-hidden="true">4.2.</strong> Hardware-in-the-Loop (HIL)</a></li><li class="chapter-item expanded "><a href="../inner-loop/optimization.html"><strong aria-hidden="true">4.3.</strong> Optimization (Code, Speed, Power)</a></li><li class="chapter-item expanded "><a href="../outer-loop/cd-ota.html"><strong aria-hidden="true">4.4.</strong> Continuous Delivery & OTA</a></li><li class="chapter-item expanded "><a href="../outer-loop/observability.html"><strong aria-hidden="true">4.5.</strong> Observability & Telemetry</a></li><li class="chapter-item expanded "><a href="../advanced/security.html"><strong aria-hidden="true">4.6.</strong> Security & Compliance (CRA)</a></li><li class="chapter-item expanded "><a href="../advanced/dependability.html"><strong aria-hidden="true">4.7.</strong> Dependability Strategy</a></li><li class="chapter-item expanded "><a href="../advanced/resilience.html"><strong aria-hidden="true">4.8.</strong> System Resilience & Watchdogs</a></li></ol></li><li class="chapter-item expanded "><a href="../annex/index.html"><strong aria-hidden="true">5.</strong> Annex</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../annex/glossary.html"><strong aria-hidden="true">5.1.</strong> Technical Glossary</a></li><li class="chapter-item expanded "><a href="../annex/blueprints.html"><strong aria-hidden="true">5.2.</strong> Starter Blueprints</a></li><li class="chapter-item expanded "><a href="../annex/certification.html"><strong aria-hidden="true">5.3.</strong> Certification Mapping (ISO/IEC)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Modern Firmware Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/w1ne/ModernFirmwareDevelopment" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="flow-of-activity"><a class="header" href="#flow-of-activity">Flow of Activity</a></h1>
+<blockquote>
+<p>"Concurrency is not an option in firmware; it is the environment. If you don't manage the flow, the hardware will manage it for you, usually at the worst possible time."</p>
+</blockquote>
+<h2 id="the-hook-the-illusion-of-parellelism"><a class="header" href="#the-hook-the-illusion-of-parellelism">The Hook: The Illusion of Parellelism</a></h2>
+<p>Embedded systems appear to do everything at once. They blink LEDs, read sensors, and talk to the cloud simultaneously. But unless you have a multi-core beast, your processor is a serial actor. The <strong>Flow of Activity</strong> is the art of choosing what to do <em>now</em> and what to defer.</p>
+<h2 id="the-foundation-schedulers--tasks"><a class="header" href="#the-foundation-schedulers--tasks">The Foundation: Schedulers &amp; Tasks</a></h2>
+<p>In a bare-metal system, you are the scheduler.</p>
+<ul>
+<li><strong>Tasks:</strong> Discrete units of work.</li>
+<li><strong>The Super-Loop:</strong> The simplest scheduler. A <code>while(1)</code> loop that executes tasks in order.</li>
+<li><strong>Latency:</strong> The time between an event and its response. In a super-loop, latency is the sum of all other task execution times.</li>
+</ul>
+<h3 id="concurrency-hazards-the-mid-read-update"><a class="header" href="#concurrency-hazards-the-mid-read-update">Concurrency Hazards: The Mid-Read Update</a></h3>
+<p>Many software-only solutions fail because they ignore hardware reality. The most dangerous hazard is the <strong>Mid-Read Update</strong>.</p>
+<p>If you are reading a 32-bit timestamp on an 8-bit or 16-bit processor, the read takes multiple instructions. If an interrupt updates that timestamp in the middle of your read, the resulting value will be nonsense (e.g., halfway between the old and new time).</p>
+<p><strong>The Protection Ladder:</strong></p>
+<ol>
+<li><strong>Volatile:</strong> Tells the compiler "this value changes behind your back." Essential, but does <em>not</em> provide atomicity.</li>
+<li><strong>Interrupt Masking:</strong> Turn off interrupts during the read. Effective, but increases system latency.</li>
+<li><strong>Atomic Load/Store:</strong> Use specialized CPU instructions that guarantee a single-cycle read or write.</li>
+<li><strong>Double Buffering:</strong> Let the producer write to one buffer while the consumer reads from another.</li>
+</ol>
+<h2 id="mutexes--semaphores"><a class="header" href="#mutexes--semaphores">Mutexes &amp; Semaphores</a></h2>
+<p>In a modern RTOS like <strong>Zephyr</strong>, you don't toggle interrupts manually.</p>
+<ol>
+<li><strong>Mutex (Mutual Exclusion):</strong> A "token" for a resource. Only one task can hold it. If Task A has the UART, Task B must wait.</li>
+<li><strong>Semaphore:</strong> A counter for resources. Useful for producer-consumer patterns (e.g., a buffer with 10 slots).</li>
+</ol>
+<h2 id="state-machines-the-logic-logic"><a class="header" href="#state-machines-the-logic-logic">State Machines: The Logic Logic</a></h2>
+<p>If your code is full of nested <code>if-else</code> blocks and flags, you need a state machine. It turns spaghetti code into a verifiable map.</p>
+<ul>
+<li><strong>States:</strong> Where the system is (e.g., <code>IDLE</code>, <code>BUSY</code>, <code>ERROR</code>).</li>
+<li><strong>Events:</strong> What happened (e.g., <code>BUTTON_PRESSED</code>, <code>TIMER_EXPIRED</code>).</li>
+<li><strong>Transitions:</strong> The logic that moves the system from one state to another.</li>
+</ul>
+<h3 id="statechart-maturity-patterns"><a class="header" href="#statechart-maturity-patterns">Statechart Maturity Patterns</a></h3>
+<p>Two common state machine pitfalls lead to "ghost in the machine" bugs:</p>
+<ol>
+<li><strong>The Initialization Void:</strong> Forgetting to define an explicit initial state. Every state machine must start in a narrow, safe configuration (e.g., <code>POWER_ON</code>).</li>
+<li><strong>Guard Collisions:</strong> Arcing from a state with two different conditions that might be true at the same time. This leads to non-deterministic behavior. Ensure every transition guard is mutually exclusive.</li>
+</ol>
+<h2 id="implementation-patterns-how-to-code-the-flow"><a class="header" href="#implementation-patterns-how-to-code-the-flow">Implementation Patterns: How to Code the Flow</a></h2>
+<p>Choosing the right structure for your state machine depends on whether your system is driven by <strong>What it is</strong> (State) or <strong>What happened</strong> (Event).</p>
+<h3 id="1-state-centric-the-switch-statement"><a class="header" href="#1-state-centric-the-switch-statement">1. State-Centric (The Switch Statement)</a></h3>
+<p>The most common approach. A giant <code>switch(state)</code> handles events within each case.</p>
+<ul>
+<li><strong>Best for:</strong> Systems where behavior is highly dependent on internal context (e.g., a device that behaves differently when "Connected" vs "Idle").</li>
+<li><strong>The Pro:</strong> Easy to follow the logic of a single state.</li>
+<li><strong>The Con:</strong> Each state must "know" about its sibling states to trigger transitions.</li>
+</ul>
+<h3 id="2-event-centric-the-event-dispatcher"><a class="header" href="#2-event-centric-the-event-dispatcher">2. Event-Centric (The Event Dispatcher)</a></h3>
+<p>The logic is driven by a <code>switch(event)</code>.</p>
+<ul>
+<li><strong>Best for:</strong> Systems with global events that must be handled regardless of state (e.g., an "Emergency Stop" button).</li>
+<li><strong>The Pro:</strong> Consolidates common event logic in one place.</li>
+<li><strong>The Con:</strong> Can be difficult to manage state-specific variables or timeouts.</li>
+</ul>
+<h3 id="3-the-state-pattern-function-pointers"><a class="header" href="#3-the-state-pattern-function-pointers">3. The State Pattern (Function Pointers)</a></h3>
+<p>An object-oriented approach in C. Each state is a <code>struct</code> of function pointers (e.g., <code>enter</code>, <code>exit</code>, <code>handle_event</code>).</p>
+<ul>
+<li><strong>Best for:</strong> Complex modular systems where states are added or removed frequently.</li>
+<li><strong>The Pro:</strong> High encapsulation. No giant switch statements.</li>
+<li><strong>The Con:</strong> Small overhead for the pointer indirection.</li>
+</ul>
+<hr />
+<h2 id="concurrency-hazards-the-race-to-the-bit"><a class="header" href="#concurrency-hazards-the-race-to-the-bit">Concurrency Hazards: The Race to the Bit</a></h2>
+<p>A <strong>Race Condition</strong> occurs when the timing or order of events affects the system's correctness.</p>
+<h3 id="anatomy-of-a-failure-the-shared-counter"><a class="header" href="#anatomy-of-a-failure-the-shared-counter">Anatomy of a Failure: The Shared Counter</a></h3>
+<p>Consider a simple global variable <code>button_press_count</code> accessed by an Interrupt Service Routine (ISR) and the <code>main</code> loop.</p>
+<ol>
+<li><strong>Main Loop:</strong> Reads <code>count</code> (Value = 10).</li>
+<li><strong>Interrupt Fires:</strong> Increments <code>count</code> to 11.</li>
+<li><strong>Main Loop:</strong> Increments its <em>local</em> copy to 11 and writes it back to memory.</li>
+<li><strong>The Result:</strong> The increment from the interrupt is lost. The value should be 12, but it is 11.</li>
+</ol>
+<blockquote>
+<p>[!WARNING]
+This is a <strong>Heisenbug</strong>: it only appears when the timing is "just wrong." You cannot find this by stepping through code in a debugger. You can only fix it by design.</p>
+</blockquote>
+<hr />
+<h2 id="real-time-deadlines-vs-speed"><a class="header" href="#real-time-deadlines-vs-speed">Real-Time: Deadlines vs. Speed</a></h2>
+<p>Real-time firmware is not about being "fast." It is about being <strong>predictably fast enough</strong>.</p>
+<ul>
+<li><strong>Worst-Case Execution Time (WCET):</strong> You must know the longest possible time a task takes to run. Measuring "average" time is useless for safety-critical systems.</li>
+<li><strong>The Deadline Rule:</strong> A task must complete before its next period starts. If a task executes every 10ms, but occasionally takes 11ms, your system is broken regardless of its "average" speed.</li>
+</ul>
+<h3 id="scheduling-approaches"><a class="header" href="#scheduling-approaches">Scheduling Approaches</a></h3>
+<ol>
+<li><strong>Pure Static Loop:</strong> Call every task in a fixed order. Predictable, but inflexible.</li>
+<li><strong>Rate Monotonic Scheduling (RMS):</strong> Prioritize tasks by their frequency. The most frequent task gets the highest priority. This is the mathematical gold standard for RTOS scheduling.</li>
+</ol>
+<h2 id="the-modern-shift-event-driven-architecture"><a class="header" href="#the-modern-shift-event-driven-architecture">The Modern Shift: Event-Driven Architecture</a></h2>
+<p>The "Zero to One" shift in flow is moving from <strong>Polling</strong> (asking "is it done yet?") to <strong>Events</strong> (waiting for "I'm done").</p>
+<ul>
+<li><strong>Traditional:</strong> CPU burns cycles in a loop checking a flag.</li>
+<li><strong>Modern:</strong> The CPU sleeps (<code>WFI</code> - Wait For Interrupt). The hardware wakes the kernel only when there is work to do. This is the foundation of battery-powered endurance.</li>
+</ul>
+<h2 id="rtos-internals-what-the-scheduler-actually-does"><a class="header" href="#rtos-internals-what-the-scheduler-actually-does">RTOS Internals: What the Scheduler Actually Does</a></h2>
+<p>Understanding what a scheduler does under the hood prevents you from making incorrect assumptions about task behavior.</p>
+<h3 id="the-context-switch"><a class="header" href="#the-context-switch">The Context Switch</a></h3>
+<p>When the scheduler preempts Task A to run Task B, it must save the entire CPU state of Task A: general-purpose registers, the Program Counter, the Stack Pointer. This is the <strong>task block</strong> (also called TCB). On ARM Cortex-M, the hardware pushes eight registers to the stack automatically on every interrupt entry. The <code>PendSV</code> handler (the kernel's context-switch mechanism) saves the rest.</p>
+<p>The cost? Roughly 50-200 CPU cycles. On a 64 MHz MCU, that is microseconds not milliseconds.</p>
+<h3 id="priority-inversion"><a class="header" href="#priority-inversion">Priority Inversion</a></h3>
+<p>This is the bug that killed the Mars Pathfinder mission in 1997.</p>
+<ol>
+<li>Task T1 (low priority) locks a mutex on a shared resource.</li>
+<li>Task T3 (high priority) tries to acquire the same mutex and blocks.</li>
+<li>Task T2 (medium priority) preempts T1 and runs indefinitely.</li>
+<li>T3 (the high-priority real-time task) is now starved by T2 (the medium-priority task), an indirect effect.</li>
+</ol>
+<p><strong>Solution: Priority Inheritance.</strong> When a high-priority task blocks on a mutex held by a lower-priority task, the OS temporarily elevates the lower-priority task's priority to the higher level. T1 finishes quickly, releases the mutex, and T3 unblocks.</p>
+<p>Zephyr implements priority inheritance by default. Without it, any system with multiple priority levels and shared mutexes is vulnerable.</p>
+<h3 id="privilege-separation-msp-vs-psp"><a class="header" href="#privilege-separation-msp-vs-psp">Privilege Separation (MSP vs. PSP)</a></h3>
+<p>The Cortex-M has two stack pointers:</p>
+<ul>
+<li><strong>MSP (Master Stack Pointer):</strong> Used by the kernel and all interrupt handlers.</li>
+<li><strong>PSP (Process Stack Pointer):</strong> Used by user-level tasks.</li>
+</ul>
+<p>A real OS switches the PSP register on each context switch and configures the CPU to run application tasks at "user" privilege. This way, a misbehaving task cannot corrupt the kernel stack or directly access peripherals; it must go through a <strong>system call (SVC)</strong>.</p>
+<p>This is the hardware-enforced boundary between user space and kernel space.</p>
+<hr />
+<h2 id="real-world-case-studies-flow-and-data-integrity"><a class="header" href="#real-world-case-studies-flow-and-data-integrity">Real-World Case Studies: Flow and Data Integrity</a></h2>
+<h3 id="the-cost-of-a-data-handshake-negative-example"><a class="header" href="#the-cost-of-a-data-handshake-negative-example">The Cost of a Data Handshake (Negative Example)</a></h3>
+<p>In 1999, the <strong>Mars Climate Orbiter</strong> was lost as it entered the Martian atmosphere. The disaster was caused by a simple unit mismatch at a component interface.</p>
+<ul>
+<li><strong>The Error:</strong> One software module (provided by Lockheed Martin) calculated the thruster impulse in English units (Pound-seconds). A second module (provided by JPL) expected these values in Metric units (Newton-seconds).</li>
+<li><strong>The Data:</strong> The discrepancy was a factor of <strong>4.45</strong>. This caused the orbiter to enter the atmosphere much lower than intended, resulting in its total destruction. The mission cost was <strong>$327.6 million</strong>.</li>
+<li><strong>The Lesson:</strong> System "Flow" is not just about timing; it is about the absolute integrity of data across every software boundary. Strong typing and explicit unit enforcement (e.g., using <code>std::chrono</code> in C++ or specialized types in Rust) are not optional for high-assurance systems.</li>
+</ul>
+<hr />
+<hr />
+<h2 id="references--further-reading"><a class="header" href="#references--further-reading">References &amp; Further Reading</a></h2>
+<ul>
+<li><em>Making Embedded Systems</em>, 2nd Edition by Elecia White (Chapter 5)</li>
+<li><a href="https://docs.zephyrproject.org">Zephyr Project: Kernel Services</a></li>
+<li><a href="https://statecharts.dev">Statecharts: A Visual Formalism for Complex Systems</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../foundation/abstraction-shift.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../foundation/peripherals.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../foundation/abstraction-shift.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../foundation/peripherals.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

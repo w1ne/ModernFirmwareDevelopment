@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>System Resilience &amp; Watchdogs - Modern Firmware Development</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../part-1-foundation.html"><strong aria-hidden="true">1.</strong> Part 1: The Thesis (Zero to One)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../culture/mindset.html"><strong aria-hidden="true">1.1.</strong> The Firmware Secret</a></li><li class="chapter-item expanded "><a href="../culture/dora-metrics.html"><strong aria-hidden="true">1.2.</strong> Measuring Performance (DORA)</a></li><li class="chapter-item expanded "><a href="../culture/vertical-progress.html"><strong aria-hidden="true">1.3.</strong> Vertical Progress (Strategy)</a></li></ol></li><li class="chapter-item expanded "><a href="../part-2-inner-loop.html"><strong aria-hidden="true">2.</strong> Part 2: The Foundation (Inner Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../foundation/hardware-handshake.html"><strong aria-hidden="true">2.1.</strong> The Hardware Handshake</a></li><li class="chapter-item expanded "><a href="../foundation/requirements.html"><strong aria-hidden="true">2.2.</strong> Requirements Engineering</a></li><li class="chapter-item expanded "><a href="../foundation/boot-sequence.html"><strong aria-hidden="true">2.3.</strong> The Boot Sequence</a></li><li class="chapter-item expanded "><a href="../foundation/abstraction-shift.html"><strong aria-hidden="true">2.4.</strong> The Abstraction Shift</a></li><li class="chapter-item expanded "><a href="../foundation/flow-of-activity.html"><strong aria-hidden="true">2.5.</strong> Flow of Activity</a></li><li class="chapter-item expanded "><a href="../foundation/peripherals.html"><strong aria-hidden="true">2.6.</strong> The Peripheral Paradox</a></li><li class="chapter-item expanded "><a href="../foundation/memory-safety.html"><strong aria-hidden="true">2.7.</strong> The Memory Safety Shift</a></li><li class="chapter-item expanded "><a href="../foundation/debugging-patterns.html"><strong aria-hidden="true">2.8.</strong> Debugging as Thinking Patterns</a></li><li class="chapter-item expanded "><a href="../foundation/reproducible-environments.html"><strong aria-hidden="true">2.9.</strong> Reproducible Environments (Docker)</a></li><li class="chapter-item expanded "><a href="../foundation/dependency-management.html"><strong aria-hidden="true">2.10.</strong> Dependency Management</a></li><li class="chapter-item expanded "><a href="../inner-loop/unit-testing.html"><strong aria-hidden="true">2.11.</strong> Unit Testing on Host</a></li><li class="chapter-item expanded "><a href="../inner-loop/static-analysis.html"><strong aria-hidden="true">2.12.</strong> Static Analysis</a></li></ol></li><li class="chapter-item expanded "><a href="../part-3-outer-loop.html"><strong aria-hidden="true">3.</strong> Part 3: The Transformation (Modern Tech)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advanced/rust.html"><strong aria-hidden="true">3.1.</strong> The Safety Shift (Rust)</a></li><li class="chapter-item expanded "><a href="../inner-loop/toolchains.html"><strong aria-hidden="true">3.2.</strong> The OS Shift (Zephyr)</a></li><li class="chapter-item expanded "><a href="../inner-loop/simulation.html"><strong aria-hidden="true">3.3.</strong> The Simulation Shift (Renode & LabWired)</a></li><li class="chapter-item expanded "><a href="../advanced/semantic-engineering.html"><strong aria-hidden="true">3.4.</strong> Semantic Engineering & Digital Twins</a></li><li class="chapter-item expanded "><a href="../advanced/networking.html"><strong aria-hidden="true">3.5.</strong> Connectivity & IoT Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../part-4-advanced.html"><strong aria-hidden="true">4.</strong> Part 4: The Delivery (Outer Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outer-loop/ci.html"><strong aria-hidden="true">4.1.</strong> Continuous Integration (CI)</a></li><li class="chapter-item expanded "><a href="../outer-loop/hil.html"><strong aria-hidden="true">4.2.</strong> Hardware-in-the-Loop (HIL)</a></li><li class="chapter-item expanded "><a href="../inner-loop/optimization.html"><strong aria-hidden="true">4.3.</strong> Optimization (Code, Speed, Power)</a></li><li class="chapter-item expanded "><a href="../outer-loop/cd-ota.html"><strong aria-hidden="true">4.4.</strong> Continuous Delivery & OTA</a></li><li class="chapter-item expanded "><a href="../outer-loop/observability.html"><strong aria-hidden="true">4.5.</strong> Observability & Telemetry</a></li><li class="chapter-item expanded "><a href="../advanced/security.html"><strong aria-hidden="true">4.6.</strong> Security & Compliance (CRA)</a></li><li class="chapter-item expanded "><a href="../advanced/dependability.html"><strong aria-hidden="true">4.7.</strong> Dependability Strategy</a></li><li class="chapter-item expanded "><a href="../advanced/resilience.html" class="active"><strong aria-hidden="true">4.8.</strong> System Resilience & Watchdogs</a></li></ol></li><li class="chapter-item expanded "><a href="../annex/index.html"><strong aria-hidden="true">5.</strong> Annex</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../annex/glossary.html"><strong aria-hidden="true">5.1.</strong> Technical Glossary</a></li><li class="chapter-item expanded "><a href="../annex/blueprints.html"><strong aria-hidden="true">5.2.</strong> Starter Blueprints</a></li><li class="chapter-item expanded "><a href="../annex/certification.html"><strong aria-hidden="true">5.3.</strong> Certification Mapping (ISO/IEC)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Modern Firmware Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/w1ne/ModernFirmwareDevelopment" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="watchdogs-and-system-resilience"><a class="header" href="#watchdogs-and-system-resilience">Watchdogs and System Resilience</a></h1>
+<p>A watchdog timer is not a reliability feature. It is a last-resort recovery mechanism. If your watchdog trips regularly in the field, you have a bug. The watchdog just prevents that bug from turning into a permanently dead device.</p>
+<h2 id="how-a-watchdog-works"><a class="header" href="#how-a-watchdog-works">How a Watchdog Works</a></h2>
+<p>A hardware counter starts at a preset value and counts down. The application must write a specific unlock sequence to a watchdog register before the counter reaches zero. If it fails to do so, the MCU resets.</p>
+<p>The counter reaching zero triggers a reset regardless of what the CPU is doing. An infinite loop, a deadlocked RTOS task, or a corrupted stack pointer, it does not matter. The WDT fires.</p>
+<p><strong>On STM32:</strong> IWDG (Independent WDT) runs on the LSI oscillator, independent of the main clock. Even if the main clock hangs, IWDG fires.</p>
+<p><strong>On nRF52:</strong> Use the <code>WDT</code> peripheral with a dedicated run register. Requires writing <code>0x6E524635</code> to <code>WDTRR</code> to kick it.</p>
+<p><strong>In Zephyr:</strong> The <code>wdt_feed()</code> API abstracts the hardware:</p>
+<pre><code class="language-c">// In initialization:
+wdt = device_get_binding("WDT_0");
+struct wdt_timeout_cfg wdt_config = {
+    .window.min = 0,
+    .window.max = 5000, // 5 second timeout
+    .callback = wdt_callback,
+};
+wdt_install_timeout(wdt, &amp;wdt_config);
+wdt_setup(wdt, WDT_OPT_PAUSE_HALTED_BY_DBG);
+
+// In each task's main loop:
+wdt_feed(wdt, channel_id);
+</code></pre>
+<h2 id="the-supervised-watchdog-pattern"><a class="header" href="#the-supervised-watchdog-pattern">The Supervised Watchdog Pattern</a></h2>
+<p>Kicking the watchdog from a single timer ISR is the most common and most dangerous watchdog anti-pattern. A timer ISR runs even when every other task is dead. The result: a completely hung system that still kicks its watchdog every 100 ms while doing nothing useful.</p>
+<p><strong>Correct pattern: task voting.</strong> Each task sets a bit in a shared bitmask when it completes its work. A dedicated supervisor task checks the bitmask periodically and only kicks the hardware watchdog when every required task has reported in. Then it resets the bitmask.</p>
+<pre><code class="language-c">// Each task:
+atomic_or(&amp;task_alive_mask, BIT(MY_TASK_ID));
+
+// Supervisor task (lowest priority):
+void supervisor_task(void *a, void *b, void *c) {
+    while (1) {
+        k_sleep(K_MSEC(1000));
+        uint32_t alive = atomic_get(&amp;task_alive_mask);
+        if ((alive &amp; REQUIRED_TASKS) == REQUIRED_TASKS) {
+            wdt_feed(wdt, channel_id);
+            atomic_set(&amp;task_alive_mask, 0);
+        }
+        // If not all tasks reported: watchdog fires on next cycle
+    }
+}
+</code></pre>
+<h2 id="use-a-windowed-watchdog"><a class="header" href="#use-a-windowed-watchdog">Use a Windowed Watchdog</a></h2>
+<p>A standard watchdog fires if you kick it too late. A <strong>windowed watchdog</strong> fires if you kick it too early or too late. This catches a task that loops so fast it kicks the watchdog thousands of times per second while ignoring all other work.</p>
+<p>STM32's WWDG supports windowed mode. Enable it when resources allow.</p>
+<h2 id="tracking-resets-the-boot-counter"><a class="header" href="#tracking-resets-the-boot-counter">Tracking Resets: The Boot Counter</a></h2>
+<p>A watchdog that fires and recovers silently is a bug that looks like normal operation. Track every reset and its reason.</p>
+<p>The MCU reset reason register (e.g., <code>RCC-&gt;CSR</code> on STM32, <code>RESETREAS</code> on nRF52) tells you whether the last reset was from:</p>
+<ul>
+<li>Power-on</li>
+<li>IWDG (watchdog)</li>
+<li>Software (intentional reboot)</li>
+<li>Pin reset</li>
+</ul>
+<p>Write the reset reason to a non-volatile counter in retained RAM or flash at every boot. If the IWDG counter increments in the field, you have a real problem.</p>
+<p>MCUboot's boot counter integration takes this further: if the application fails to confirm itself within a boot window, MCUboot rolls back to the previous firmware image automatically.</p>
+<hr />
+<h2 id="real-world-case-studies-system-resilience"><a class="header" href="#real-world-case-studies-system-resilience">Real-World Case Studies: System Resilience</a></h2>
+<h3 id="the-cost-of-a-priority-paradox-negative-example"><a class="header" href="#the-cost-of-a-priority-paradox-negative-example">The Cost of a Priority Paradox (Negative Example)</a></h3>
+<p>In 1997, the <strong>Mars Pathfinder</strong> began resetting itself sporadically during meteorological data collection. The cause was a <strong>Priority Inversion</strong> in the VxWorks RTOS.</p>
+<ul>
+<li><strong>The Error:</strong> A low-priority task held a mutex for a shared data bus. A medium-priority task preempted it. A high-priority bus management task then needed the bus and became blocked. Since the medium task wouldn't stop, the low-priority task couldn't finish to release the bus. The high-priority task stalled.</li>
+<li><strong>The Data:</strong> The watchdog timer detected the high-priority task hang and reset the system. Engineers spent <strong>3 weeks</strong> replicating the bug on Earth before patching the spacecraft.</li>
+<li><strong>The Lesson:</strong> Use priority inheritance on all shared mutexes. Never assume that a watchdog will fix a systemic architectural flaw.</li>
+</ul>
+<h3 id="the-success-of-extreme-remote-resilience-positive-example"><a class="header" href="#the-success-of-extreme-remote-resilience-positive-example">The Success of Extreme Remote Resilience (Positive Example)</a></h3>
+<p>In 2023, the <strong>Voyager 1</strong> spacecraft began transmitting garbled data from 15 billion miles away. A single memory chip in the Flight Data Subsystem (FDS) had failed.</p>
+<ul>
+<li><strong>The Resilience:</strong> The engineering team could not repair the hardware. Instead, they segmented the affected software code and relocated it to scattered, unused areas of the remaining memory.</li>
+<li><strong>The Data:</strong> After <strong>5 months</strong> of analysis and remote patching using 1970s assembly, the team restored all engineering and science data. The mission continues after <strong>46 years</strong> in space.</li>
+<li><strong>The Lesson:</strong> Resilient software treats hardware as a volatile resource. Design for relocation. Build the capability to patch Every byte of the system remotely.</li>
+</ul>
+<hr />
+<h2 id="system-reset-safety-during-recovery"><a class="header" href="#system-reset-safety-during-recovery">System Reset: Safety During Recovery</a></h2>
+<p>The MCU resetting does not reset the physical world. A motor commanded to full speed before the MCU reset is still at full speed during the reboot.</p>
+<p>Rules for well-behaved resets:</p>
+<ol>
+<li><strong>Safe outputs on reset.</strong> GPIO output reset state is configurable. Set actuator outputs to their safe default (off, neutral, braked) in hardware before the boot sequence completes.</li>
+<li><strong>Read before write.</strong> On startup, read all sensor states before commanding any output. Never command based on stale internal state.</li>
+<li><strong>Initialize history buffers from reality.</strong> If your control loop uses a moving average, pre-fill the history with the current measured value, not zero. A zero-initialized integrator will spike the output on first loop execution.</li>
+<li><strong>Detect repeated resets.</strong> If the system resets 3 times within 30 seconds, something is systemically wrong. Enter a safe/degraded mode rather than looping through the same crash repeatedly. Log the condition.</li>
+</ol>
+<hr />
+<h2 id="mental-model-silent-vs-loud-failures"><a class="header" href="#mental-model-silent-vs-loud-failures">Mental Model: Silent vs. Loud Failures</a></h2>
+<p>How a system fails determines its safety.</p>
+<ul>
+<li><strong>Silent Failure (The Danger):</strong> The system encounters an error but continues to operate in an undefined or unsafe state. It does not log the error or alert the user. This is common with "swallowed" exceptions and ignored return codes.</li>
+<li><strong>Loud Failure (The Safe State):</strong> The system identifies the error and immediately transitions to a predefined "Safe State." This may involve shutting down actuators, lighting an error LED, and broadcasting a telemetry alert.</li>
+<li><strong>The Principle:</strong> In a high-assurance system, there are no "Minor" errors. Every error that moves the system out of its verified operational range must be treated as a "Loud Failure" requiring immediate recovery or safe-state transition.</li>
+</ul>
+<hr />
+<blockquote>
+<p>[!IMPORTANT]
+Never disable the watchdog once it is running. If a long operation would exceed the timeout, kick the watchdog at checkpoints within that operation, or use Zephyr's <code>wdt_setup()</code> with <code>WDT_OPT_PAUSE_IN_SLEEP</code> to pause during low-power modes only.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../advanced/dependability.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../annex/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../advanced/dependability.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../annex/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
