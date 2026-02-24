@@ -2,12 +2,12 @@
 
 > "Horizontal progress is easy to imagine because we already know what it looks like. Vertical progress is harder to imagine because it requires doing something nobody else has done." — Peter Thiel
 
-## The Hook: Escaping the Vendor Trap
+## Escaping the Vendor Trap
 Most firmware teams are stuck in **Horizontal Progress (1 to N)**. They take a vendor's reference design, copy a vendor's driver, and modify it slightly. If the silicon goes out of stock, their business stops. They compete on price and chip availability. In Thiel's terms, they build 100 typewriters when the world needs a word processor.
 
 **Vertical Progress (0 to 1)** in firmware means building a proprietary software ecosystem that makes the underlying hardware irrelevant. Create a "Secret" that your competitors haven't discovered yet.
 
-## The Theory: The 10x Rule of Verticality
+## The 10x Rule of Verticality
 In *Zero to One*, Thiel argues that technology is the primary driver of vertical progress. To achieve this in the embedded world, your solution must be at least **10x better** than the status quo in some dimension.
 
 1.  **The Monopoly of Experience:** Apple's success comes from **Vertical Integration**. By designing the M-series chips, the kernel, and the application layer simultaneously, they achieve performance that modular competitors cannot match.
@@ -23,11 +23,10 @@ To achieve vertical integration, you must master the architecture of change:
 *   **Encapsulation:** Hide the hardware details. Only the module specifically managing a resource should know its implementation. This lets you swap a SPI flash for an I2C or internal flash without breaking the application logic.
 
 ## Case Study: SpaceX - The Vertical Integration Monopoly
-SpaceX brought almost everything in-house, especially the **Software**.
 
-*   **The Status Quo:** Incumbents (Boeing, Lockheed) built rockets by outsourcing components to thousands of vendors. This created a fragile supply chain and "Horizontal" bloat.
-*   **The Vertical Leap:** By writing their own flight control systems and using commodity hardware, they achieved a **10x cost reduction**.
-*   **The Lesson:** Ownership of the software stack grants you ownership of the economics. SpaceX doesn't wait for "Vendor HALs". They write their own.
+SpaceX brought almost everything in-house. The engineering team prioritized software ownership. Incumbents like Boeing and Lockheed built rockets by outsourcing components to thousands of vendors. This outsourcing created a fragile supply chain and massive horizontal bloat.
+
+SpaceX wrote their own flight control systems and used commodity hardware. This vertical leap achieved a 10x cost reduction. Ownership of the software stack grants you ownership of the economics. SpaceX does not wait for vendor abstraction layers. The engineering team writes their own.
 
 ### The Cost of Horizontal Complexity (Negative Example)
 In the late 2000s, **Nokia** lost its market dominance to the iPhone. The primary reason was not hardware prowess, but the "Horizontal" complexity of their software stack.
