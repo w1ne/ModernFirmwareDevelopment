@@ -20,12 +20,17 @@ While Docker solved the "Build" problem, **Dev Containers** (using the `.devcont
 
 ---
 
-## Case Study: MAHLE Powertrain - The "One-Click Build"
-MAHLE Powertrain, a leader in aerospace and automotive propulsion, faced a common scaling challenge: ensuring binary consistency across global engineering teams.
-
-*   **The Problem:** Manual setups led to "Environmental Drift." Binaries differed between machines due to local path headers or slightly different patch versions of `make`.
-*   **The Solution:** They mandated a containerized toolchain. By versioning the Dockerfile alongside the source code, they ensured that the exact same binary (identical checksums) was generated regardless of who ran the build.
 *   **The Result:** Elimination of "it works on my machine" bugs and a 10x reduction in onboarding time for new developers.
+
+### The Success of Environment as Code (Positive Example)
+The global payment platform **PayPal** utilized containerization to solve the problem of environment drift across their massive developer base.
+
+*   **The Problem:** Inconsistent builds and test environment failures were stalling production releases. Minor differences in local developer environments led to unpredictable behavior in production.
+*   **The Shift:** They transitioned to an automated "Golden Path" using Docker. This ensured every developer and CI runner operated in a bit-identical environment.
+*   **The Data:** PayPal achieved significantly faster build times and a drastically lower failure rate for rollbacks and redeployments. Their infra-as-code strategy allowed them to manage thousands of developers with a small, specialized platform team.
+*   **The Lesson:** In firmware, your compiler is your product’s heartbeat. If that heartbeat differs between developers, your product is unstable. Treat your Dockerfile as a mission-critical part of your source code.
+
+---
 
 ---
 
