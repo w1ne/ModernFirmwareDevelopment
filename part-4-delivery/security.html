@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Security &amp; Compliance (CRA) - Modern Firmware Development</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/index.html"><strong aria-hidden="true">1.</strong> Part 1: The Thesis (Zero to One)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-1-thesis/mindset.html"><strong aria-hidden="true">1.1.</strong> The Firmware Secret</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/dora-metrics.html"><strong aria-hidden="true">1.2.</strong> Measuring Performance (DORA)</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/vertical-progress.html"><strong aria-hidden="true">1.3.</strong> Vertical Progress (Strategy)</a></li></ol></li><li class="chapter-item expanded "><a href="../part-2-foundation/index.html"><strong aria-hidden="true">2.</strong> Part 2: The Foundation (Inner Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-2-foundation/hardware-handshake.html"><strong aria-hidden="true">2.1.</strong> The Hardware Handshake</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/requirements.html"><strong aria-hidden="true">2.2.</strong> Requirements Engineering</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/boot-sequence.html"><strong aria-hidden="true">2.3.</strong> The Boot Sequence</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/abstraction-shift.html"><strong aria-hidden="true">2.4.</strong> The Abstraction Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/flow-of-activity.html"><strong aria-hidden="true">2.5.</strong> Flow of Activity</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/peripherals.html"><strong aria-hidden="true">2.6.</strong> The Peripheral Paradox</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/memory-safety.html"><strong aria-hidden="true">2.7.</strong> The Memory Safety Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/debugging-patterns.html"><strong aria-hidden="true">2.8.</strong> Debugging as Thinking Patterns</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/reproducible-environments.html"><strong aria-hidden="true">2.9.</strong> Reproducible Environments (Docker)</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/dependency-management.html"><strong aria-hidden="true">2.10.</strong> Dependency Management</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/unit-testing.html"><strong aria-hidden="true">2.11.</strong> Unit Testing on Host</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/static-analysis.html"><strong aria-hidden="true">2.12.</strong> Static Analysis</a></li></ol></li><li class="chapter-item expanded "><a href="../part-3-transformation/index.html"><strong aria-hidden="true">3.</strong> Part 3: The Transformation (Modern Tech)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-3-transformation/rust.html"><strong aria-hidden="true">3.1.</strong> The Safety Shift (Rust)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/toolchains.html"><strong aria-hidden="true">3.2.</strong> The OS Shift (Zephyr)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/simulation.html"><strong aria-hidden="true">3.3.</strong> The Simulation Shift (Renode & LabWired)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/semantic-engineering.html"><strong aria-hidden="true">3.4.</strong> Semantic Engineering & Digital Twins</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/networking.html"><strong aria-hidden="true">3.5.</strong> Connectivity & IoT Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../part-4-delivery/index.html"><strong aria-hidden="true">4.</strong> Part 4: The Delivery (Outer Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-4-delivery/ci.html"><strong aria-hidden="true">4.1.</strong> Continuous Integration (CI)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/hil.html"><strong aria-hidden="true">4.2.</strong> Hardware-in-the-Loop (HIL)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/optimization.html"><strong aria-hidden="true">4.3.</strong> Optimization (Code, Speed, Power)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/cd-ota.html"><strong aria-hidden="true">4.4.</strong> Continuous Delivery & OTA</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/observability.html"><strong aria-hidden="true">4.5.</strong> Observability & Telemetry</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/security.html" class="active"><strong aria-hidden="true">4.6.</strong> Security & Compliance (CRA)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/dependability.html"><strong aria-hidden="true">4.7.</strong> Dependability Strategy</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/resilience.html"><strong aria-hidden="true">4.8.</strong> System Resilience & Watchdogs</a></li></ol></li><li class="chapter-item expanded "><a href="../annex/index.html"><strong aria-hidden="true">5.</strong> Annex</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../annex/glossary.html"><strong aria-hidden="true">5.1.</strong> Technical Glossary</a></li><li class="chapter-item expanded "><a href="../annex/blueprints.html"><strong aria-hidden="true">5.2.</strong> Starter Blueprints</a></li><li class="chapter-item expanded "><a href="../annex/certification.html"><strong aria-hidden="true">5.3.</strong> Certification Mapping (ISO/IEC)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Modern Firmware Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/w1ne/ModernFirmwareDevelopment" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="security--compliance-cra"><a class="header" href="#security--compliance-cra">Security &amp; Compliance (CRA)</a></h1>
+<blockquote>
+<p>"Security is not a feature you add at the end; it is a foundational pillar that determines whether your product is a success or a liability."</p>
+</blockquote>
+<h2 id="the-hook-the-legal-hammer-is-falling"><a class="header" href="#the-hook-the-legal-hammer-is-falling">The Hook: The Legal Hammer is Falling</a></h2>
+<p>For decades, firmware security was an afterthought. That era is over. The <strong>EU Cyber Resilience Act (CRA)</strong> has turned cybersecurity from a "Best Practice" into a "Legal Requirement."</p>
+<p>If your connected device is not <strong>Secure by Design</strong>, you can no longer sell it in Europe. Non-compliance results in fines up to <strong>€15 million</strong> or 2.5% of global revenue.</p>
+<h2 id="the-theory-the-compliance-pillar"><a class="header" href="#the-theory-the-compliance-pillar">The Theory: The Compliance Pillar</a></h2>
+<p>The Cyber Resilience Act (CRA) mandates three critical "Vertical" shifts for firmware teams. Compliance is not just a checkbox; it is a mechanism for building high-trust products.</p>
+<ol>
+<li><strong>Security by Default:</strong> No hardcoded passwords. Encrypted communication by default. Minimized attack surface.</li>
+<li><strong>The SBOM and VEX Ecosystem:</strong> You must provide a <strong>Software Bill of Materials (SBOM)</strong> accompanied by a <strong>Vulnerability Exploitability eXchange (VEX)</strong> document. VEX allows you to declare that a known library vulnerability is not exploitable because the vulnerable code path is never reachable in your specific firmware configuration.</li>
+<li><strong>The 5-Year Lifecycle:</strong> You are legally obligated to provide security updates for a minimum of 5 years. Elite teams turn this into a business model by using software-defined architectures that are easy to patch remotely without hardware revisions.</li>
+</ol>
+<hr />
+<hr />
+<h2 id="case-study-the-jeep-takeover-lateral-movement"><a class="header" href="#case-study-the-jeep-takeover-lateral-movement">Case Study: The Jeep Takeover (Lateral Movement)</a></h2>
+<p>In 2015, researchers remotely took over a Jeep Cherokee, controlling steering and brakes while it was on a highway.</p>
+<ul>
+<li><strong>The Flaw:</strong> They didn't hack the brakes directly. They hacked the <strong>Infotainment system</strong> (connected to the web) and used a "Lateral Movement" to send commands to the vehicle's CAN bus.</li>
+<li><strong>The Lesson:</strong> Security is only as strong as your weakest node. If your "unimportant" UI processor is connected to the web, your safety-critical flight controller is at risk.</li>
+</ul>
+<hr />
+<h2 id="the-implementation-hardware-root-of-trust"><a class="header" href="#the-implementation-hardware-root-of-trust">The Implementation: Hardware Root of Trust</a></h2>
+<p>Elite security doesn't rely on software alone. It anchors secrets in the hardware using dedicated security subsystems.</p>
+<h3 id="secure-boot-chain"><a class="header" href="#secure-boot-chain">Secure Boot Chain</a></h3>
+<p>A secure boot chain validates every stage of the boot process before execution.</p>
+<ol>
+<li><strong>ROM Bootloader (Immutable):</strong> The first-stage bootloader lives in read-only ROM. It cannot be tampered with. It verifies the signature of the second-stage bootloader.</li>
+<li><strong>Second-Stage Bootloader:</strong> Verifies the application image's signature using an asymmetric key pair. The private key never leaves the factory. The public key lives in OTP (One-Time Programmable) flash.</li>
+<li><strong>Application:</strong> Only executes if the entire chain of signatures is valid.</li>
+</ol>
+<p>If any stage fails verification, the device refuses to boot.</p>
+<h3 id="arm-trustzone-cortex-m33"><a class="header" href="#arm-trustzone-cortex-m33">ARM TrustZone (Cortex-M33+)</a></h3>
+<p>TrustZone divides the processor into two worlds: <strong>Secure</strong> and <strong>Non-Secure</strong>.</p>
+<ul>
+<li><strong>Secure World:</strong> Holds cryptographic keys, Secure Boot logic, and trusted services. Non-Secure code can never read this memory region.</li>
+<li><strong>Non-Secure World:</strong> Runs your application firmware. It requests sensitive operations via the PSA Crypto API.</li>
+</ul>
+<p>This hardware boundary ensures that even if the application firmware is fully compromised, the attacker cannot extract the device's private key.</p>
+<h3 id="arm-platform-security-architecture-psa"><a class="header" href="#arm-platform-security-architecture-psa">ARM Platform Security Architecture (PSA)</a></h3>
+<p><strong>PSA Certified</strong> (Level 1, 2, 3) gives customers a verifiable guarantee your device meets a baseline security standard. In regulated industries, this certification is increasingly a procurement requirement.</p>
+<h3 id="hardware-security-modules-hsms"><a class="header" href="#hardware-security-modules-hsms">Hardware Security Modules (HSMs)</a></h3>
+<p>For industrial and automotive use cases, a dedicated <strong>HSM</strong> (e.g., Infineon SLx) provides a physically separate, tamper-resistant environment for all cryptographic operations. The main CPU never sees the private key; it only sees the output.</p>
+<h3 id="tpm-20-measured-boot-pcrs"><a class="header" href="#tpm-20-measured-boot-pcrs">TPM 2.0: Measured Boot (PCRs)</a></h3>
+<p>Instead of just checking a signature, a TPM creates an incorruptible record of the boot process.</p>
+<ul>
+<li><strong>The Identity:</strong> Every stage of the bootloader "measures" the next stage (hashing the code).</li>
+<li><strong>The Gate:</strong> If the code has been tampered with, the TPM will refuse to release the encryption keys needed to boot the application. This is a "Zero to One" shift from <em>hoping</em> it's safe to <em>proving</em> it's safe.</li>
+</ul>
+<h3 id="2-automated-scanning"><a class="header" href="#2-automated-scanning">2. Automated Scanning</a></h3>
+<p>Your CI pipeline must act as your security guard.</p>
+<ul>
+<li><strong>Step 1:</strong> Generate a <code>CycloneDX</code> SBOM using <code>cdxgen</code>.</li>
+<li><strong>Step 2:</strong> Scan it against the <strong>Global CVE Database</strong> using <code>Trivy</code> or <code>Grype</code>.</li>
+<li><strong>Step 3:</strong> If a high-severity vulnerability is found in a library, the build fails.</li>
+</ul>
+<h2 id="references--further-reading"><a class="header" href="#references--further-reading">References &amp; Further Reading</a></h2>
+<ul>
+<li><a href="https://commission.europa.eu">EU Cyber Resilience Act (CRA) - Official Text</a></li>
+<li><a href="https://cyclonedx.org">CycloneDX: The Security-Focused SBOM Standard</a></li>
+<li><a href="https://www.wired.com">The Jeep Hack: A Milestone in Automotive Security</a></li>
+<li><a href="https://trustedcomputinggroup.org">Trusted Computing Group: TPM 2.0 Library Specification</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../part-4-delivery/observability.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../part-4-delivery/dependability.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../part-4-delivery/observability.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../part-4-delivery/dependability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

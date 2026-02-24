@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Unit Testing on Host - Modern Firmware Development</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/index.html"><strong aria-hidden="true">1.</strong> Part 1: The Thesis (Zero to One)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-1-thesis/mindset.html"><strong aria-hidden="true">1.1.</strong> The Firmware Secret</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/dora-metrics.html"><strong aria-hidden="true">1.2.</strong> Measuring Performance (DORA)</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/vertical-progress.html"><strong aria-hidden="true">1.3.</strong> Vertical Progress (Strategy)</a></li></ol></li><li class="chapter-item expanded "><a href="../part-2-foundation/index.html"><strong aria-hidden="true">2.</strong> Part 2: The Foundation (Inner Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-2-foundation/hardware-handshake.html"><strong aria-hidden="true">2.1.</strong> The Hardware Handshake</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/requirements.html"><strong aria-hidden="true">2.2.</strong> Requirements Engineering</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/boot-sequence.html"><strong aria-hidden="true">2.3.</strong> The Boot Sequence</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/abstraction-shift.html"><strong aria-hidden="true">2.4.</strong> The Abstraction Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/flow-of-activity.html"><strong aria-hidden="true">2.5.</strong> Flow of Activity</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/peripherals.html"><strong aria-hidden="true">2.6.</strong> The Peripheral Paradox</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/memory-safety.html"><strong aria-hidden="true">2.7.</strong> The Memory Safety Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/debugging-patterns.html"><strong aria-hidden="true">2.8.</strong> Debugging as Thinking Patterns</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/reproducible-environments.html"><strong aria-hidden="true">2.9.</strong> Reproducible Environments (Docker)</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/dependency-management.html"><strong aria-hidden="true">2.10.</strong> Dependency Management</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/unit-testing.html" class="active"><strong aria-hidden="true">2.11.</strong> Unit Testing on Host</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/static-analysis.html"><strong aria-hidden="true">2.12.</strong> Static Analysis</a></li></ol></li><li class="chapter-item expanded "><a href="../part-3-transformation/index.html"><strong aria-hidden="true">3.</strong> Part 3: The Transformation (Modern Tech)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-3-transformation/rust.html"><strong aria-hidden="true">3.1.</strong> The Safety Shift (Rust)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/toolchains.html"><strong aria-hidden="true">3.2.</strong> The OS Shift (Zephyr)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/simulation.html"><strong aria-hidden="true">3.3.</strong> The Simulation Shift (Renode & LabWired)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/semantic-engineering.html"><strong aria-hidden="true">3.4.</strong> Semantic Engineering & Digital Twins</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/networking.html"><strong aria-hidden="true">3.5.</strong> Connectivity & IoT Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../part-4-delivery/index.html"><strong aria-hidden="true">4.</strong> Part 4: The Delivery (Outer Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-4-delivery/ci.html"><strong aria-hidden="true">4.1.</strong> Continuous Integration (CI)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/hil.html"><strong aria-hidden="true">4.2.</strong> Hardware-in-the-Loop (HIL)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/optimization.html"><strong aria-hidden="true">4.3.</strong> Optimization (Code, Speed, Power)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/cd-ota.html"><strong aria-hidden="true">4.4.</strong> Continuous Delivery & OTA</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/observability.html"><strong aria-hidden="true">4.5.</strong> Observability & Telemetry</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/security.html"><strong aria-hidden="true">4.6.</strong> Security & Compliance (CRA)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/dependability.html"><strong aria-hidden="true">4.7.</strong> Dependability Strategy</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/resilience.html"><strong aria-hidden="true">4.8.</strong> System Resilience & Watchdogs</a></li></ol></li><li class="chapter-item expanded "><a href="../annex/index.html"><strong aria-hidden="true">5.</strong> Annex</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../annex/glossary.html"><strong aria-hidden="true">5.1.</strong> Technical Glossary</a></li><li class="chapter-item expanded "><a href="../annex/blueprints.html"><strong aria-hidden="true">5.2.</strong> Starter Blueprints</a></li><li class="chapter-item expanded "><a href="../annex/certification.html"><strong aria-hidden="true">5.3.</strong> Certification Mapping (ISO/IEC)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Modern Firmware Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/w1ne/ModernFirmwareDevelopment" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-test-driven-asset-unit-testing"><a class="header" href="#the-test-driven-asset-unit-testing">The Test-Driven Asset (Unit Testing)</a></h1>
+<blockquote>
+<p>"A physician is obligated to provide the best possible care for their patient. An engineer is obligated to provide the best possible code for their device."</p>
+</blockquote>
+<h2 id="the-hook-hardware-is-your-bottleneck"><a class="header" href="#the-hook-hardware-is-your-bottleneck">The Hook: Hardware is Your Bottleneck</a></h2>
+<p>The traditional firmware cycle is a "Hardware Handshake":</p>
+<ol>
+<li>Write code.</li>
+<li>Flash to the board (2 minutes).</li>
+<li>Push buttons and watch LEDs (5 minutes).</li>
+<li>Discover it doesn't work.</li>
+<li>Repeat.</li>
+</ol>
+<p>This cycle is 100x slower than modern software development. To move at "Zero to One" speed, you must decouple your logic from your silicon.</p>
+<h2 id="dual-targeting-the-no-block-strategy"><a class="header" href="#dual-targeting-the-no-block-strategy">Dual-Targeting: The "No-Block" Strategy</a></h2>
+<p>The primary goal of modern firmware testing is to ensure that development is <strong>never blocked</strong> by the availability of hardware. This is achieved through <strong>Dual-Targeting</strong>: writing code that runs both on your production MCU (the Target) and on your development machine (the Host).</p>
+<h3 id="the-hardware-bottleneck"><a class="header" href="#the-hardware-bottleneck">The Hardware Bottleneck</a></h3>
+<p>If you can only run code on the target, you suffer from:</p>
+<ul>
+<li><strong>Hardware Scarcity:</strong> Developers wait for limited prototypes, leading to "mounds of unverified work."</li>
+<li><strong>Slow Toolchains:</strong> Target compilers and flash loaders are significantly slower than native host tools.</li>
+<li><strong>Co-Debugging Hell:</strong> When a bug occurs, is it the new code, the hardware version, or the compiler optimization?</li>
+</ul>
+<h3 id="the-host-native-advantage"><a class="header" href="#the-host-native-advantage">The Host-Native Advantage</a></h3>
+<p>Running logic on the host (Linux, macOS, or Windows) allows you to:</p>
+<ol>
+<li><strong>Iterate in Seconds:</strong> Native compilers (GCC/Clang) are highly optimized for build speed.</li>
+<li><strong>Use Deep Analysis Tools:</strong> Tools like <em>Valgrind</em> or <em>AddressSanitizer</em> (ASan) provide a level of memory visibility that is impossible on small MCUs.</li>
+<li><strong>Prevent Integration Hell:</strong> If the logic works on the host, you only have to debug the hardware interaction (HAL) when you move to the board.</li>
+</ol>
+<hr />
+<h2 id="the-theory-coverage-vs-mutation-score"><a class="header" href="#the-theory-coverage-vs-mutation-score">The Theory: Coverage vs. Mutation Score</a></h2>
+<p>Elite teams know that <strong>Code Coverage</strong> (did the line run?) is a vanity metric. You can have 100% coverage with zero assertions.</p>
+<p>The "Elite" metric is the <strong>Mutation Score</strong>.</p>
+<ul>
+<li><strong>Mutation Testing:</strong> A tool (like <em>Mull</em> or <em>TESSY</em>) automatically injects bugs ("mutants") into your code—changing a <code>+</code> to a <code>-</code> or a <code>&gt;</code> to a <code>&gt;=</code>.</li>
+<li><strong>The Goal:</strong> If your tests still pass after the code is mangled, your tests are weak.</li>
+<li><strong>The Insight:</strong> Mutation testing identifies the "silent failures" that coverage misses.</li>
+</ul>
+<hr />
+<h2 id="case-study-distal-motion---surgical-robots"><a class="header" href="#case-study-distal-motion---surgical-robots">Case Study: Distal Motion - Surgical Robots</a></h2>
+<p>Distal Motion, the manufacturer of the <em>Dexter</em> surgical robot, operates in a world where software failure isn't an option (Safety Class C, IEC 62304).</p>
+<ul>
+<li><strong>The Problem:</strong> Manually verifying safety requirements on physical robot prototypes was slow and expensive.</li>
+<li><strong>The Solution:</strong> They implemented a rigorous off-target unit testing pipeline. They treated software verification as a continuous process powered by <a href="../part-3-transformation/simulation.html">Simulation</a>.</li>
+<li><strong>The Result:</strong> A <strong>43% increase in code coverage</strong> and a significant reduction in post-integration defects. More importantly, they achieved medical certification faster by providing automated proof of correctness.</li>
+<li><strong>The ROI:</strong> While unit testing adds roughly 30% to initial development time, it reduces the cost of "late-stage debugging"—which is typically <strong>10x to 100x more expensive</strong> in embedded systems.</li>
+</ul>
+<h3 id="the-success-of-test-driven-development-positive-example"><a class="header" href="#the-success-of-test-driven-development-positive-example">The Success of Test-Driven Development (Positive Example)</a></h3>
+<p>In 2008, <strong>Microsoft</strong> and <strong>IBM</strong> conducted a landmark study on the industrial impact of Test-Driven Development (TDD).</p>
+<ul>
+<li><strong>The Problem:</strong> Traditional "Code-then-Test" workflows often lead to high defect density and expensive late-stage rework.</li>
+<li><strong>The Shift:</strong> Teams across Microsoft and IBM adopted TDD (Red-Green-Refactor) for production systems.</li>
+<li><strong>The Data:</strong> The study showed a <strong>40% to 90% reduction in pre-release defect density</strong> compared to non-TDD projects. While initial development time increased by <strong>15% to 35%</strong>, the cost was offset by the drastic reduction in bug-fixing effort later in the lifecycle.</li>
+<li><strong>The Lesson:</strong> TDD is not a speed penalty; it is a quality insurance policy. For firmware, where field failures can trigger expensive recalls, a 2x to 10x reduction in bugs is the difference between a profitable product and a financial disaster.</li>
+</ul>
+<hr />
+<hr />
+<h2 id="the-implementation-picking-your-weapons"><a class="header" href="#the-implementation-picking-your-weapons">The Implementation: Picking Your Weapons</a></h2>
+<p>For modern C++, you have three primary choices:</p>
+<ol>
+<li><strong>Google Test (GTest):</strong> The industry standard for logic-heavy projects.</li>
+<li><strong>Ceedling (Unity/CMock):</strong> Built specifically for Embedded C. It automates the "Mocking" of hardware registers.</li>
+<li><strong>Mull / Dextool:</strong> Modern mutation testing plugins for the LLVM/Clang toolchain.</li>
+</ol>
+<h3 id="the-mock-strategy"><a class="header" href="#the-mock-strategy">The "Mock" Strategy:</a></h3>
+<p>Don't use the real driver. Create a <code>MockFlashMemory</code> that returns a "Simulated Error" to see how your file system handles a corrupt block. That is a test you can't easily perform on real hardware without a hammer.</p>
+<hr />
+<h2 id="practical-the-dual-target-cmake-blueprint"><a class="header" href="#practical-the-dual-target-cmake-blueprint">Practical: The Dual-Target CMake Blueprint</a></h2>
+<p>CMake allows you to manage two entirely different build worlds (Host and Target) in one project.</p>
+<pre><code class="language-cmake"># CMakeLists.txt
+cmake_minimum_required(VERSION 3.16)
+project(FirmwareProject)
+
+# 1. Component Logic (Shared)
+add_library(temp_logic STATIC src/temp_logic.c)
+
+# 2. Target Build (ARM)
+if(FIRMWARE_TARGET STREQUAL "stm32")
+    add_executable(firmware.bin main.c)
+    target_link_libraries(firmware.bin PRIVATE temp_logic hal_stm32)
+endif()
+
+# 3. Host Build (Unit Tests)
+if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+    add_executable(unit_tests tests/test_temp_logic.c)
+    target_link_libraries(unit_tests PRIVATE temp_logic mock_hal)
+endif()
+</code></pre>
+<p>This structure ensures that your business logic is bit-identical on both the x86 host and the ARM target.</p>
+<hr />
+<h2 id="practical-the-mock-register-the-function-pointer-strategy"><a class="header" href="#practical-the-mock-register-the-function-pointer-strategy">Practical: The Mock Register (The Function Pointer Strategy)</a></h2>
+<p>If your code touches registers, it is "welded" to the hardware. Use function pointers to break the connection for testing.</p>
+<pre><code class="language-c">// temp_sensor.h
+typedef struct {
+    uint16_t (*read_reg)(uint8_t addr);
+} i2c_ops_t;
+
+// The logic under test
+uint16_t get_temperature(i2c_ops_t *ops) {
+    return ops-&gt;read_reg(0x05); 
+}
+
+// In your Test
+uint16_t mock_read(uint8_t addr) {
+    return 0x00FF; // Controlled test value
+}
+
+void test_temp(void) {
+    i2c_ops_t mock_ops = { .read_reg = mock_read };
+    assert(get_temperature(&amp;mock_ops) == 255);
+}
+</code></pre>
+<p>By passing a "dictionary" of operations, you can verify your algorithm's response to any hardware state without physical silicon.</p>
+<hr />
+<hr />
+<h2 id="testing-strategy-beyond-the-unit"><a class="header" href="#testing-strategy-beyond-the-unit">Testing Strategy: Beyond the Unit</a></h2>
+<p>A robust verification plan requires multiple perspectives on the same code.</p>
+<ul>
+<li><strong>Black-Box Testing:</strong> Testing against requirements without looking at the internal code. This ensures the system does what the user expects.</li>
+<li><strong>White-Box Testing:</strong> Testing based on the internal structure of the code (e.g., ensuring every branch of an <code>if-else</code> is hit). This finds technical edge cases that black-box testing misses.</li>
+<li><strong>Regressions:</strong> Every bug fix must be accompanied by a new test case that would have caught it. This ensures that old bugs never return.</li>
+</ul>
+<hr />
+<h2 id="issue-tracking-learning-from-failure"><a class="header" href="#issue-tracking-learning-from-failure">Issue Tracking: Learning from Failure</a></h2>
+<p>Finding a bug is only half the battle. Analyzing <strong>why</strong> it happened prevents future ones.</p>
+<h3 id="the-bug-farm-pattern"><a class="header" href="#the-bug-farm-pattern">The "Bug Farm" Pattern</a></h3>
+<p>Defects are rarely distributed evenly. They cluster in "Bug Farms"—complex modules that are responsible for a disproportionate number of failures.</p>
+<ul>
+<li><strong>The Action:</strong> If a module has been "fixed" three times and still fails, do not fix it a fourth time. <strong>Discard it.</strong> Rewrite the module with simpler logic and better tests.</li>
+<li><strong>Root Cause Analysis:</strong> For every major defect, ask: <em>Was this a requirement error, a design flaw, or a coding slip?</em> Tracking this data reveals where your development process is weakest.</li>
+</ul>
+<h2 id="references--further-reading"><a class="header" href="#references--further-reading">References &amp; Further Reading</a></h2>
+<ul>
+<li><a href="https://www.vector.com">Distal Motion Case Study: Surgical Robotics Verification</a></li>
+<li><em>Test-Driven Development for Embedded C</em> by James Grenning.</li>
+<li><a href="https://mull.readthedocs.io">Mull: Practical Mutation Testing for C++</a></li>
+<li><a href="https://www.razorcat.com">TESSY: Automated Mutation Testing for Embedded C</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../part-2-foundation/dependency-management.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../part-2-foundation/static-analysis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../part-2-foundation/dependency-management.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../part-2-foundation/static-analysis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

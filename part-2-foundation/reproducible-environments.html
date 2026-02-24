@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Reproducible Environments (Docker) - Modern Firmware Development</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/index.html"><strong aria-hidden="true">1.</strong> Part 1: The Thesis (Zero to One)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-1-thesis/mindset.html"><strong aria-hidden="true">1.1.</strong> The Firmware Secret</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/dora-metrics.html"><strong aria-hidden="true">1.2.</strong> Measuring Performance (DORA)</a></li><li class="chapter-item expanded "><a href="../part-1-thesis/vertical-progress.html"><strong aria-hidden="true">1.3.</strong> Vertical Progress (Strategy)</a></li></ol></li><li class="chapter-item expanded "><a href="../part-2-foundation/index.html"><strong aria-hidden="true">2.</strong> Part 2: The Foundation (Inner Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-2-foundation/hardware-handshake.html"><strong aria-hidden="true">2.1.</strong> The Hardware Handshake</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/requirements.html"><strong aria-hidden="true">2.2.</strong> Requirements Engineering</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/boot-sequence.html"><strong aria-hidden="true">2.3.</strong> The Boot Sequence</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/abstraction-shift.html"><strong aria-hidden="true">2.4.</strong> The Abstraction Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/flow-of-activity.html"><strong aria-hidden="true">2.5.</strong> Flow of Activity</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/peripherals.html"><strong aria-hidden="true">2.6.</strong> The Peripheral Paradox</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/memory-safety.html"><strong aria-hidden="true">2.7.</strong> The Memory Safety Shift</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/debugging-patterns.html"><strong aria-hidden="true">2.8.</strong> Debugging as Thinking Patterns</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/reproducible-environments.html" class="active"><strong aria-hidden="true">2.9.</strong> Reproducible Environments (Docker)</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/dependency-management.html"><strong aria-hidden="true">2.10.</strong> Dependency Management</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/unit-testing.html"><strong aria-hidden="true">2.11.</strong> Unit Testing on Host</a></li><li class="chapter-item expanded "><a href="../part-2-foundation/static-analysis.html"><strong aria-hidden="true">2.12.</strong> Static Analysis</a></li></ol></li><li class="chapter-item expanded "><a href="../part-3-transformation/index.html"><strong aria-hidden="true">3.</strong> Part 3: The Transformation (Modern Tech)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-3-transformation/rust.html"><strong aria-hidden="true">3.1.</strong> The Safety Shift (Rust)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/toolchains.html"><strong aria-hidden="true">3.2.</strong> The OS Shift (Zephyr)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/simulation.html"><strong aria-hidden="true">3.3.</strong> The Simulation Shift (Renode & LabWired)</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/semantic-engineering.html"><strong aria-hidden="true">3.4.</strong> Semantic Engineering & Digital Twins</a></li><li class="chapter-item expanded "><a href="../part-3-transformation/networking.html"><strong aria-hidden="true">3.5.</strong> Connectivity & IoT Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../part-4-delivery/index.html"><strong aria-hidden="true">4.</strong> Part 4: The Delivery (Outer Loop)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../part-4-delivery/ci.html"><strong aria-hidden="true">4.1.</strong> Continuous Integration (CI)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/hil.html"><strong aria-hidden="true">4.2.</strong> Hardware-in-the-Loop (HIL)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/optimization.html"><strong aria-hidden="true">4.3.</strong> Optimization (Code, Speed, Power)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/cd-ota.html"><strong aria-hidden="true">4.4.</strong> Continuous Delivery & OTA</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/observability.html"><strong aria-hidden="true">4.5.</strong> Observability & Telemetry</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/security.html"><strong aria-hidden="true">4.6.</strong> Security & Compliance (CRA)</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/dependability.html"><strong aria-hidden="true">4.7.</strong> Dependability Strategy</a></li><li class="chapter-item expanded "><a href="../part-4-delivery/resilience.html"><strong aria-hidden="true">4.8.</strong> System Resilience & Watchdogs</a></li></ol></li><li class="chapter-item expanded "><a href="../annex/index.html"><strong aria-hidden="true">5.</strong> Annex</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../annex/glossary.html"><strong aria-hidden="true">5.1.</strong> Technical Glossary</a></li><li class="chapter-item expanded "><a href="../annex/blueprints.html"><strong aria-hidden="true">5.2.</strong> Starter Blueprints</a></li><li class="chapter-item expanded "><a href="../annex/certification.html"><strong aria-hidden="true">5.3.</strong> Certification Mapping (ISO/IEC)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Modern Firmware Development</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/w1ne/ModernFirmwareDevelopment" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="reproducible-environments-docker"><a class="header" href="#reproducible-environments-docker">Reproducible Environments (Docker)</a></h1>
+<blockquote>
+<p>"A build environment should be like a pure mathematical function: given the same source code, it must always produce the exact same binary output, down to the last bit."</p>
+</blockquote>
+<h2 id="the-hook-defeating-software-archaeology"><a class="header" href="#the-hook-defeating-software-archaeology">The Hook: Defeating "Software Archaeology"</a></h2>
+<p>We’ve all been there: a critical bug is reported in a device shipped three years ago. You pull the code, but it won't compile because your current laptop has GCC 12.1, and the legacy project required GCC 9.3 with a specific, now-deprecated version of Python.</p>
+<p>You spend three days doing "software archaeology"—digging through old wikis to recreate a ghost environment—before you even write a single line of fix. This is <strong>Horizontal Stagnation</strong>. Reproducible Environments turn this three-day nightmare into a three-second command.</p>
+<h2 id="the-theory-build-environment-as-code-oci"><a class="header" href="#the-theory-build-environment-as-code-oci">The Theory: Build Environment as Code (OCI)</a></h2>
+<p>The "Secret" is to separate the <strong>Build Tools</strong> from the <strong>Host Machine</strong>. By using standards from the <strong>Open Container Initiative (OCI)</strong>, we ensure that:</p>
+<ol>
+<li><strong>The Environment is a Function:</strong> The compiler, linker, and libraries are frozen in an immutable image.</li>
+<li><strong>Weapons-Grade Repeatability:</strong> Every developer, every CI runner, and every build server uses the <em>exact</em> same toolchain.</li>
+<li><strong>OCI Compliance:</strong> Your build logic is portable across any cloud or local platform that supports the industry-standard container runtime.</li>
+</ol>
+<hr />
+<h3 id="the-2027-standard-dev-containers--cloud-ides"><a class="header" href="#the-2027-standard-dev-containers--cloud-ides">The 2027 Standard: Dev Containers &amp; Cloud IDEs</a></h3>
+<p>While Docker solved the "Build" problem, <strong>Dev Containers</strong> (using the <code>.devcontainer</code> standard) solved the "Editor" problem. By 2027, elite teams no longer install extensions or compilers on their local OS. They use <strong>Cloud IDEs</strong> (like GitHub Codespaces or Gitpod) to launch a fully configured, browser-based development environment in seconds. This allows for "Zero-Setup" contributions from anywhere in the world.</p>
+<hr />
+<ul>
+<li><strong>The Result:</strong> Elimination of "it works on my machine" bugs and a 10x reduction in onboarding time for new developers.</li>
+</ul>
+<h3 id="the-success-of-environment-as-code-positive-example"><a class="header" href="#the-success-of-environment-as-code-positive-example">The Success of Environment as Code (Positive Example)</a></h3>
+<p>The global payment platform <strong>PayPal</strong> utilized containerization to solve the problem of environment drift across their massive developer base.</p>
+<ul>
+<li><strong>The Problem:</strong> Inconsistent builds and test environment failures were stalling production releases. Minor differences in local developer environments led to unpredictable behavior in production.</li>
+<li><strong>The Shift:</strong> They transitioned to an automated "Golden Path" using Docker. This ensured every developer and CI runner operated in a bit-identical environment.</li>
+<li><strong>The Data:</strong> PayPal achieved significantly faster build times and a drastically lower failure rate for rollbacks and redeployments. Their infra-as-code strategy allowed them to manage thousands of developers with a small, specialized platform team.</li>
+<li><strong>The Lesson:</strong> In firmware, your compiler is your product’s heartbeat. If that heartbeat differs between developers, your product is unstable. Treat your Dockerfile as a mission-critical part of your source code.</li>
+</ul>
+<hr />
+<hr />
+<h2 id="the-implementation-the-multi-stage-blueprint"><a class="header" href="#the-implementation-the-multi-stage-blueprint">The Implementation: The Multi-Stage Blueprint</a></h2>
+<p>A professional firmware environment should use <strong>Multi-Stage Builds</strong> to separate the "Heavy" toolchain from the "Lean" build environment.</p>
+<pre><code class="language-dockerfile"># Stage 1: The Heavy Toolchain (ARM GCC)
+FROM ubuntu:22.04 as toolchain
+RUN apt-get update &amp;&amp; apt-get install -y \
+    gcc-arm-none-eabi \
+    cmake \
+    ninja-build \
+    python3-pip
+
+# Stage 2: The Project Build Environment
+FROM toolchain as build-env
+WORKDIR /app
+# We mount the source code at runtime via --volume
+# This prevents the image from becoming stale
+CMD ["cmake", "-Bbuild", "-GNinja"]
+</code></pre>
+<h3 id="pro-tip-hardware-passthrough"><a class="header" href="#pro-tip-hardware-passthrough">Pro Tip: Hardware Passthrough</a></h3>
+<p>A common complaint with Docker is that it can't "see" your USB debugger (J-Link/ST-Link).</p>
+<ul>
+<li><strong>Solution:</strong> Use <strong><a href="https://github.com/dorssel/usbipd-win">USBIPD</a></strong> (on Windows) or native USB passthrough (on Linux) to map the physical USB port into your OCI container. This allows you to <code>flash</code> and <code>debug</code> directly from your reproducible environment.</li>
+</ul>
+<h2 id="references--further-reading"><a class="header" href="#references--further-reading">References &amp; Further Reading</a></h2>
+<ul>
+<li><a href="https://www.mobilityengineeringtech.com">MAHLE Powertrain: One-Click Build Environment</a></li>
+<li><a href="https://opencontainers.org">Open Container Initiative (OCI) Specifications</a></li>
+<li><a href="https://reproducible-builds.org">Reproduction-builds.org</a></li>
+<li><a href="https://interrupt.memfault.com/blog/reproducible-builds">Memfault: Reproducible Builds in Embedded</a></li>
+<li><a href="https://github.com/dorssel/usbipd-win">USBIPD: Bridging Hardware to Containers</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../part-2-foundation/debugging-patterns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../part-2-foundation/dependency-management.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../part-2-foundation/debugging-patterns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../part-2-foundation/dependency-management.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
