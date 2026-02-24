@@ -201,22 +201,18 @@
 </ul>
 <p>As hardware scales, the firmware must accommodate change. A prototype is not a product.</p>
 <h2 id="case-study-the-15-billion-spaghetti-toyota-failure"><a class="header" href="#case-study-the-15-billion-spaghetti-toyota-failure">Case Study: The $1.5 Billion Spaghetti (Toyota Failure)</a></h2>
-<p>In 2013, the <em>Bookout v. Toyota</em> case revealed the terminal cost of a "Hardware-First" mindset. Toyota’s engine control firmware was found to be "spaghetti code"—untestable, undocumented, and dangerous.</p>
-<ul>
-<li><strong>The Flaw:</strong> Over 10,000 global variables and a silent task death could disable throttle control without triggering a watchdog. The system had no clear abstraction, making regression testing impossible.</li>
-<li><strong>The Result:</strong> Unintended acceleration, fatalities, and a <strong>$1.5 Billion settlement</strong>.</li>
-<li><strong>The Lesson:</strong> You cannot "QA" safety into a system built on a broken culture. Safety must be an architectural first principle, not a final inspection step.</li>
-</ul>
+<p>In 2013, the <em>Bookout v. Toyota</em> case revealed the final cost of a Hardware-First mindset. Experts analyzed Toyota’s engine control firmware and discovered untestable and undocumented code.</p>
+<p>The system contained over 10000 global variables. A silent task death disabled vehicle throttle control without triggering a watchdog timer. The architecture lacked clear abstraction boundaries. This design failure made regression testing impossible.</p>
+<p>The resulting unintended acceleration caused fatalities. Toyota paid a $1.5 Billion settlement. You cannot inspect safety into a system built on a broken engineering culture. You must treat safety as an architectural first principle.</p>
 <h2 id="case-study-the-living-platform-tesla-success"><a class="header" href="#case-study-the-living-platform-tesla-success">Case Study: The Living Platform (Tesla Success)</a></h2>
-<p>Contrast this with Tesla. During a safety recall in 2023 affecting nearly 2 million vehicles, Tesla didn't ask customers to visit a dealer. They pushed a firmware update.</p>
-<ul>
-<li><strong>The Edge:</strong> Tesla treats their cars as a single, integrated computer. They control the vertical stack from the kernel to the fleet management.</li>
-<li><strong>The Result:</strong> They reduce the cost of recalls to almost zero while continuously adding value.</li>
-<li><strong>The Lesson:</strong> When firmware moves at the speed of cloud software, the business wins.</li>
-</ul>
+<p>Contrast the Toyota failure with Tesla. In 2023, a safety recall affected nearly two million Tesla vehicles. The company did not ask customers to visit a dealership. The engineering team deployed an automated firmware update overnight.</p>
+<p>Tesla treats their vehicles as a single integrated computer. The team controls the vertical stack from the operating system kernel to the fleet management cloud. This architectural control reduces the cost of safety recalls to zero. The company adds continuous product value to existing vehicles. Your business wins when your firmware deployment moves at the speed of cloud software.</p>
 <h2 id="the-implementation-how-to-start-the-shift"><a class="header" href="#the-implementation-how-to-start-the-shift">The Implementation: How to Start the Shift</a></h2>
 <p>To stop building "Spaghetti" and start building "Platforms," you must adopt modern architectural disciplines:</p>
-<ol start="4">
+<ol>
+<li><strong>Continuous Integration:</strong> Automate everything. Your tests must run on every commit.</li>
+<li><strong>Hardware Abstraction Layers:</strong> Decouple your business logic from the silicon.</li>
+<li><strong>Modern Toolchains:</strong> Ditch the vendor IDEs. Use Makefile, CMake, or modern build systems.</li>
 <li><strong>Simulation First:</strong> Stop waiting for boards. Test your decoupled logic on the host or in a digital twin.</li>
 </ol>
 <hr />
