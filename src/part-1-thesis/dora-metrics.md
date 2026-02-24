@@ -108,7 +108,7 @@ Total system reliability is a function of where you spend your testing effort.
 
 *   **The Traditional Trap:** Many teams spend 80% of their time on manual hardware testing and 20% on automated logic. This is the **Testing Iceberg**. Most of the effort is underwater (manual), slow, and non-reproducible.
 *   **The Inverted Pyramid:** Modern firmware flips the script:
-    1.  **Bottom Layer (Base):** 70% [Unit Tests](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/inner-loop/unit-testing.md) (Host-based). Fast, exhaustive, and runs in seconds.
+    1.  **Bottom Layer (Base):** 70% [Unit Tests](../part-2-foundation/unit-testing.md) (Host-based). Fast, exhaustive, and runs in seconds.
     2.  **Middle Layer:** 20% Integration/Simulation Tests (Renode/QEMU). Verifies the interaction between modules and virtual peripherals.
     3.  **Top Layer (Peak):** 10% System/HIL Tests (Real Hardware). Verifies final physical behavior and electrical compliance.
 *   **The Benefit:** By pushing 90% of your verification to the "Off-Target" base, you ensure that the expensive hardware phase is for **validation** (did we build the right thing?), not **debugging** (did we build it correctly?).

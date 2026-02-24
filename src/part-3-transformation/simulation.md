@@ -40,7 +40,7 @@ While Renode solved the "Backend" of simulation, the "User Experience" remained 
 1.  **Visual Topology:** Don't write Python scripts to define your board. "Wire" your SoC, sensors, and actuators in a visual CAD-like interface.
 2.  **Collaborative Debugging:** If you find a bug, don't send a screenshot. Send a **URL** to a "Frozen State" of the simulation. Your colleague can open it and step through the exact same failure.
 3.  **Hardware-Software Co-verification:** Automatically ingest a PDF datasheet to generate a functional peripheral model in minutes.
-4.  **Digital Twins for AI:** In the 2027 context, simulation is the engine for **Edge AI Lifecycle Management**. Instead of collecting manual data from the field, you use a [Digital Twin](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/advanced/semantic-engineering.md) to generate millions of synthetic sensor scenarios to train and verify your TinyML models before they ever touch silicon.
+4.  **Digital Twins for AI:** In the 2027 context, simulation is the engine for **Edge AI Lifecycle Management**. Instead of collecting manual data from the field, you use a [Digital Twin](semantic-engineering.md) to generate millions of synthetic sensor scenarios to train and verify your TinyML models before they ever touch silicon.
 
 ---
 

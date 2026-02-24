@@ -8,7 +8,7 @@ Shipping firmware used to mean physical access to every device. OTA (Over-The-Ai
 2.  **No rollback:** A power loss mid-update leaves the device with a half-written image. It is now a brick.
 3.  **Big-bang rollout:** A bad update goes to every device simultaneously. Your entire fleet is broken.
 
-Modern OTA engineering eliminates all three by using a robust [Security](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/advanced/security.md) architecture.
+Modern OTA engineering eliminates all three.
 
 ## The A/B Partition Model
 

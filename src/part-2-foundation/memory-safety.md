@@ -101,7 +101,7 @@ If a variable absolutely must retain state across function calls, use these patt
 
 A vulnerability or bug in one software module should not lead to a total system failure. 
 
-*   **The Inhabitable Compartment:** Think of your firmware like a ship. A leak in the hull is only catastrophic if it can flood the entire vessel. By using the Memory Protection Unit (MPU), you divide your firmware into "Inhabitable Compartments." You can define these boundaries during the [Abstraction Shift](file:///home/andrii/Projects/Proemion/ModernFirmwareDevelopment/src/foundation/abstraction-shift.md) design phase.
+*   **The Inhabitable Compartment:** Think of your firmware like a ship. A leak in the hull is only catastrophic if it can flood the entire vessel. By using the Memory Protection Unit (MPU), you divide your firmware into "Inhabitable Compartments." You can define these boundaries during the [Abstraction Shift](abstraction-shift.md) design phase.
 *   **Defining the Radius:** The Blast Radius is the maximum extent of damage a single module can do. If the Bluetooth stack has its own MPU-protected region, a buffer overflow in that stack cannot touch the motor control logic.
 *   **Hardware Enforcement:** Unlike "Software Rules," the MPU is a hardware-enforced boundary. If a module tries to write outside its blast radius, the CPU triggers a fault instantly. This contains the "explosion" of a bug and allows the rest of the system to enter a safe state.
 
